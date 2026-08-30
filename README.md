@@ -65,7 +65,6 @@ evaluating at.
 
 Doing a full Laurent expansion every time, as Example 2 required, is slow. In general, if $f$ has
 a simple pole at $z=a$, the residue can be pulled out directly as a limit:
-**(52A)**
 
 $$
 \mathrm{Res}_{z=a} f(z) = C_{-1}
