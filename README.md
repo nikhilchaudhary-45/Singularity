@@ -65,8 +65,12 @@ evaluating at.
 
 Doing a full Laurent expansion every time, as Example 2 required, is slow. In general, if $f$ has
 a simple pole at $z=a$, the residue can be pulled out directly as a limit:
+**(52A)**
 
-$$\mathrm{Res}_{z=a} f(z) \;\overset{\text{def}}{=}\; C_{-1} \;=\; \lim_{z\to a}\big[(z-a)\,f(z)\big] \tag{52A}$$
+$$
+\mathrm{Res}_{z=a} f(z) = C_{-1}
+= \lim_{z\to a}\left[(z-a)f(z)\right]
+$$
 
 **Why it works:** multiplying by $(z-a)$ kills the $1/(z-a)$ blow-up, leaving $C_{-1}$ plus a power
 series in $(z-a)$. Every term of that series vanishes as $z\to a$, so only $C_{-1}$ survives.
