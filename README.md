@@ -44,19 +44,19 @@ $$\frac{\sin z}{z^2} = \underbrace{\frac 1z}_{\text{singular part}} + \underbrac
 
 Simple pole at $z=0$, residue $=1$. No other finite singularities anywhere in the plane.
 
-### Example 2 — $\operatorname{cosec}(z)$
+### Example 2 — $\mathrm{cosec}{cosec}(z)$
 
 Here the pole location is clear ($\sin z$ has simple zeros at $z=n\pi,\ n\in\mathbb Z$, so
-$\operatorname{cosec}(z)=1/\sin(z)$ should have simple poles there) but the residue takes real
+$\mathrm{cosec}(z)=1/\sin(z)$ should have simple poles there) but the residue takes real
 work to extract. Taylor-expand $\sin z$ about $z=n\pi$:
 
 $$\sin z = (-1)^n(z-n\pi)\left[1-\frac16(z-n\pi)^2+\frac{1}{120}(z-n\pi)^4-\cdots\right]$$
 
 Inverting the bracket via the binomial series gives
 
-$$\operatorname{cosec} z = \underbrace{\frac{(-1)^n}{z-n\pi}}_{\text{singular part}} + \underbrace{\frac{(-1)^n}{6}\left[(z-n\pi)+\frac{7}{60}(z-n\pi)^3+\cdots\right]}_{\text{regular part}}$$
+$$\mathrm{cosec}{cosec} z = \underbrace{\frac{(-1)^n}{z-n\pi}}_{\text{singular part}} + \underbrace{\frac{(-1)^n}{6}\left[(z-n\pi)+\frac{7}{60}(z-n\pi)^3+\cdots\right]}_{\text{regular part}}$$
 
-So $\operatorname{cosec}(z)$ has a simple pole at every $z=n\pi$, with residue $(-1)^n$ — the sign
+So $\mathrm{cosec}{cosec}(z)$ has a simple pole at every $z=n\pi$, with residue $(-1)^n$ — the sign
 alternates from one pole to the next along the real axis. Worth keeping in mind: the residue of a
 function need not be a single fixed number; it can (and here does) depend on *which* pole you're
 evaluating at.
@@ -66,7 +66,7 @@ evaluating at.
 Doing a full Laurent expansion every time, as Example 2 required, is slow. In general, if $f$ has
 a simple pole at $z=a$, the residue can be pulled out directly as a limit:
 
-$$\operatorname{Res}_{z=a} f(z) \;\overset{\text{def}}{=}\; C_{-1} \;=\; \lim_{z\to a}\big[(z-a)\,f(z)\big] \tag{52A}$$
+$$\mathrm{Res}_{z=a} f(z) \;\overset{\text{def}}{=}\; C_{-1} \;=\; \lim_{z\to a}\big[(z-a)\,f(z)\big] \tag{52A}$$
 
 **Why it works:** multiplying by $(z-a)$ kills the $1/(z-a)$ blow-up, leaving $C_{-1}$ plus a power
 series in $(z-a)$. Every term of that series vanishes as $z\to a$, so only $C_{-1}$ survives.
@@ -75,7 +75,7 @@ Simple poles very often arise in the form $f(z) = g(z)/h(z)$, with $g,h$ analyti
 $g(a)\ne 0$, and $h$ having a *simple* zero at $a$ (i.e. $h(a)=0$, $h'(a)\ne 0$). In that case
 (52A) reduces to
 
-$$\operatorname{Res}_{z=a} f(z) = \operatorname{Res}_{z=a}\frac{g(z)}{h(z)} = \frac{g(a)}{h'(a)}$$
+$$\mathrm{Res}_{z=a} f(z) = \mathrm{Res}_{z=a}\frac{g(z)}{h(z)} = \frac{g(a)}{h'(a)}$$
 
 This is the version actually used most in practice — it reproduces both examples above almost
 instantly:
@@ -83,7 +83,7 @@ instantly:
 | Function | $g(z)$ | $h(z)$ | $h'(z)$ | Residue |
 |---|---|---|---|---|
 | $\sin z / z^2$ at $z=0$ | (direct limit, see below) | — | — | $1$ |
-| $\operatorname{cosec} z$ at $z=n\pi$ | $1$ | $\sin z$ | $\cos z$ | $\dfrac{1}{\cos(n\pi)} = (-1)^n$ |
+| $\mathrm{cosec}{cosec} z$ at $z=n\pi$ | $1$ | $\sin z$ | $\cos z$ | $\dfrac{1}{\cos(n\pi)} = (-1)^n$ |
 
 For $\sin z/z^2$, applying (52A) directly: $\displaystyle\lim_{z\to0} z\cdot\frac{\sin z}{z^2} = \lim_{z\to0}\frac{\sin z}{z} = 1$ — same answer as the series computation, no expansion needed.
 
@@ -104,7 +104,7 @@ $$f(z) = \frac{C_{-m}}{(z-a)^m} + \frac{C_{-(m-1)}}{(z-a)^{m-1}} + \cdots + \fra
 The residue (still $C_{-1}$, the coefficient of the $(z-a)^{-1}$ term specifically — not any of
 the other negative-power coefficients) generalises to
 
-$$\operatorname{Res}_{z=a} f(z) = \frac{1}{(m-1)!}\lim_{z\to a}\frac{d^{m-1}}{dz^{m-1}}\Big[(z-a)^m f(z)\Big]$$
+$$\mathrm{Res}_{z=a} f(z) = \frac{1}{(m-1)!}\lim_{z\to a}\frac{d^{m-1}}{dz^{m-1}}\Big[(z-a)^m f(z)\Big]$$
 
 which is exactly (52A) again when $m=1$ (the derivative and the factorial both drop out).
 
