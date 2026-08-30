@@ -88,7 +88,7 @@ instantly:
 | $\sin z / z^2$ at $z=0$ | (direct limit, see below) | — | — | $1$ |
 | $\mathrm{cosec}{cosec} z$ at $z=n\pi$ | $1$ | $\sin z$ | $\cos z$ | $\dfrac{1}{\cos(n\pi)} = (-1)^n$ |
 
-For $\sin z/z^2$, applying (52A) directly: $\displaystyle\lim_{z\to0} z\cdot\frac{\sin z}{z^2} = \lim_{z\to0}\frac{\sin z}{z} = 1$ — same answer as the series computation, no expansion needed.
+For $\sin z/z^2$,: $\displaystyle\lim_{z\to0} z\cdot\frac{\sin z}{z^2} = \lim_{z\to0}\frac{\sin z}{z} = 1$ — same answer as the series computation, no expansion needed.
 
 **Caution:** the $g(a)/h'(a)$ shortcut needs $h'(a)\ne 0$ *specifically*. If $h'(a)=0$ too, the
 zero of $h$ isn't simple, $f$ has a higher-order pole, and this formula doesn't apply as-is (see
