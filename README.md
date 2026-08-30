@@ -98,9 +98,6 @@ cancel against the zero of $g$, changing the order of the singularity.
 
 ## 4. Extension: Higher-Order (Multiple) Poles
 
-*Not covered on lecture pages 60–64 — included here because it's the natural next step and the
-formula below specialises exactly to (52A) when $m=1$.*
-
 $f(z)$ has a **pole of order $m$** at $z=a$ if, near $a$,
 
 $$f(z) = \frac{C_{-m}}{(z-a)^m} + \frac{C_{-(m-1)}}{(z-a)^{m-1}} + \cdots + \frac{C_{-1}}{z-a} + \sum_{n\ge0} C_n(z-a)^n$$
@@ -110,7 +107,7 @@ the other negative-power coefficients) generalises to
 
 $$\mathrm{Res}_{z=a} f(z) = \frac{1}{(m-1)!}\lim_{z\to a}\frac{d^{m-1}}{dz^{m-1}}\Big[(z-a)^m f(z)\Big]$$
 
-which is exactly (52A) again when $m=1$ (the derivative and the factorial both drop out).
+which is exactly same again when $m=1$ (the derivative and the factorial both drop out).
 
 ## References
 
