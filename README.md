@@ -98,19 +98,19 @@ For a simple contour $C$ encircling isolated singularities $z_1, z_2, z_3,\dots$
 ## Part 3 — Deformation Argument, and Real Integrals: Trigonometric Functions
 **Scribe: Person C · Notebook pp. 71–75 · PDF pp. 72–76**
 
-### 3.1 Completing the motivation for the Residue Theorem `[pp.72–73]`
+### 3.1 Completing the motivation for the Residue Theorem 
 
 Deform $C$ (enclosing $z_1,z_2,z_3,z_4,\dots$) into thin "channels" connecting small circles around each singularity, plus the singularities' own small circles. As the channels are brought arbitrarily close together, their contributions cancel pairwise, leaving only small circles around each pole — reducing the problem to the elementary result
 
-$$\oint_C \frac{dz}{(z-a)^n} = 2\pi i\,\delta_{n,1}, \qquad C:\text{ circle around } z=a \qquad (72A)$$
+$$\oint_C \frac{dz}{(z-a)^n} = 2\pi i\,\delta_{n,1}, \qquad C:\text{ circle around } z=a \
 
-Any term $(z-a)^n$ with $n\ge0$ or $n<-1$ in the Laurent expansion of $f(z)$ around $z_k$ contributes **zero** by $(72A)$ — only the $n=-1$ (residue) term survives. This is exactly the content of Cauchy's Residue Theorem, $(66A)$.
+Any term $(z-a)^n$ with $n\ge0$ or $n<-1$ in the Laurent expansion of $f(z)$ around $z_k$ contributes **zero**  — only the $n=-1$ (residue) term survives. This is exactly the content of Cauchy's Residue Theorem, .
 
 > **Practical note from the lecturer:** since the theorem applies to a *closed* contour, the recurring trick for evaluating real definite integrals $\int_a^b f(x)\,dx$ is to relate them to a contour integral of the analytic continuation $f(z)$, by **adding a piece that closes the contour but contributes zero** to the integral — "adding a well-chosen zero" to arrive at the answer.
 
-### 3.2 Section 7 — Evaluating Real Integrals Using Residue Theorems `[p.73]`
+### 3.2 Section 7 — Evaluating Real Integrals Using Residue Theorems 
 
-#### (a) Trigonometric functions over $(0, 2\pi)$ `[pp.73–75]`
+#### (a) Trigonometric functions over $(0, 2\pi)$
 
 **Type:**
 $$I = \int_0^{2\pi} f(\sin\theta, \cos\theta)\, d\theta$$
