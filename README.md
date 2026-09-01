@@ -1,7 +1,3 @@
-# Essential Singularity and Laurent Series
-
-## 1. Introduction
-
 In complex analysis, the behavior of a function near a point where it is not analytic is studied using the concept of **singularities**.
 
 If a function \(f(z)\) is analytic in some neighborhood of \(z=a\), except possibly at \(z=a\), then \(a\) is called an **isolated singular point**.
@@ -11,70 +7,6 @@ The three important types of isolated singularities are:
 1. Removable singularity
 2. Pole
 3. Essential singularity
-
-The classification can be understood very naturally from the **Laurent expansion** of the function about the singular point.
-
-In this section, the main focus is on **essential singularities and the region of convergence of Laurent series**.
-
-The discussion follows the class notes and the standard treatment given in:
-
-> G. B. Arfken, G. Weber and F. E. Harris, *Mathematical Methods for Physicists*.
-
----
-
-# 2. Laurent Series
-
-A Taylor series contains only non-negative powers of \((z-a)\). However, when the function has a singularity at \(z=a\), negative powers may also appear.
-
-The general Laurent expansion of \(f(z)\) about \(z=a\) is
-
-\[
-f(z)=\sum_{n=-\infty}^{\infty}C_n(z-a)^n.
-\]
-
-It can also be separated into two parts:
-
-\[
-f(z)
-=
-\sum_{n=1}^{\infty}
-\frac{C_{-n}}{(z-a)^n}
-+
-\sum_{n=0}^{\infty}
-C_n(z-a)^n.
-\]
-
-The first part is called the **principal part** or **singular part**, while the second part is called the **regular part**.
-
-Therefore,
-
-\[
-\boxed{
-f(z)=\text{Singular part}+\text{Regular part}
-}
-\]
-
-where
-
-\[
-\boxed{
-\text{Singular part}
-=
-\sum_{n=1}^{\infty}
-\frac{C_{-n}}{(z-a)^n}
-}
-\]
-
-and
-
-\[
-\boxed{
-\text{Regular part}
-=
-\sum_{n=0}^{\infty}
-C_n(z-a)^n.
-}
-\]
 
 ---
 
