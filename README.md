@@ -59,7 +59,7 @@ To classify the behaviour of $f(z)$ at $z=\infty$ in the extended complex plane:
 ## Part 2 — Singularity at Infinity & Cauchy's Residue Theorem
 **Scribe: Person B · Notebook pp. 68–71 · PDF pp. 69–72**
 
-### 2.1 Singularity at infinity — worked examples `[pp.68–70]`
+### 2.1 Singularity at infinity — worked examples 
 
 Using $\phi(w) \equiv f(1/w)$ and checking its behaviour at $w=0$:
 
@@ -69,24 +69,24 @@ Using $\phi(w) \equiv f(1/w)$ and checking its behaviour at $w=0$:
 - By the same argument, $\cos z,\ \sin z,\ \sinh z,\ \cosh z$ (all entire functions) also have essential singularities at $z=\infty$. Their power series (valid for $0\le|z|<\infty$) can therefore be viewed as **Laurent series** on the whole finite plane $\mathbb{C}$.
 - **Ex. 4:** $e^{1/z} + e^{z} = \sum_{n=1}^{\infty}\frac{1}{n!\,z^n} + 2 + \sum_{n=1}^{\infty}\frac{z^n}{n!}$ *(56A form)* has essential singularities at **both** $z=0$ and $z=\infty$ ⟹ its Laurent series is valid in the annulus $0<|z|<\infty$.
 
-> **Note (deferred):** the concept of a *residue at infinity* is more subtle than the nature of the singularity there, and is treated later in the course — not in this page range.
 
-### 2.2 Cauchy's Residue Theorem `[p.70]`
+
+### 2.2 Cauchy's Residue Theorem 
 
 As a consequence of the contour-deformation theorem, we obtain:
 
 > **Cauchy's Residue Theorem.** Let $C$ be a closed contour lying entirely in a region where $f(z)$ is analytic except for isolated poles and essential singularities at the set of points $\{z_k,\ k=1,2,\dots\}$, with **no** singularities lying on $C$ itself. If $C$ encircles the singularities once, in the positive (CCW) sense, then
-> $$\oint_C f(z)\,dz = 2\pi i \sum_k \operatorname*{Res}_{z=z_k} f(z) \qquad (66A)$$
+> $$\oint_C f(z)\,dz = 2\pi i \sum_k \operatorname*{Res}_{z=z_k} f(z) 
 
-### 2.3 Winding number `[p.71]`
+### 2.3 Winding number `
 
 - The RHS of $(66A)$ picks up a factor $-1$ if $C$ encircles the singularities in the CW (negative) sense.
 - If a singularity is encircled $r$ times (note: with **simple, non-self-intersecting** curves, only $r \in \{\dots,-1,0,1,\dots\}$ occur — $|r|>1$ isn't possible), its contribution to the sum is $\pm r$ times the residue there (minus sign for CW encircling). $r$ is called the **winding number** of the contour about that singularity.
 - Examples sketched in the notes: an open curve around $z_0$ with net winding $r=0$; a CW loop around $z_0$ giving $r=-1$; a loop that wraps twice CCW giving $r=2$.
 
-### 2.4 Motivating the theorem (not a full proof) `[pp.71–72]`
+### 2.4 Motivating the theorem (not a full proof)
 
-The notes explicitly **do not prove** the theorem in general, but motivate it for a simple contour $C$ encircling isolated singularities $z_1, z_2, z_3,\dots$ The key tool is the **deformation theorem**, valid as long as:
+For a simple contour $C$ encircling isolated singularities $z_1, z_2, z_3,\dots$ The key tool is the **deformation theorem**, valid as long as:
 
 (i) no part of $C$ leaves the region of analyticity of $f(z)$;
 (ii) no singularity of $f(z)$ is crossed by the contour during the deformation (this also preserves the winding number).
