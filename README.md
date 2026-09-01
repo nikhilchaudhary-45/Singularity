@@ -1,114 +1,505 @@
-# Singularities, Poles & Residues
+# Essential Singularities and Laurent Series
+
+## Introduction
+
+In complex analysis, singular points are points where a complex function fails to be analytic. An isolated singularity can be classified as a **removable singularity**, a **pole**, or an **essential singularity**.
+
+This section focuses on **essential singularities** and the role of **Laurent series** in analyzing them.
+
+The discussion follows the class notes and the standard treatment in:
+
+> G. B. Arfken, G. A. Weber and F. E. Harris, *Mathematical Methods for Physicists*, Academic Press.
 
 ---
 
-## 1. Removable Singularities
+# 1. Essential Singularity
 
-Before talking about genuine singularities, it's worth being precise about the ones that aren't
-singularities at all. Take
+## Definition
 
-$$f(z) = \frac{\sin z}{z}.$$
+Let \(f(z)\) have an isolated singularity at \(z=a\).
 
-Strictly, $f$ is undefined at $z=0$ — the formula gives $0/0$ there, and it *looks* singular
-because the denominator vanishes. But
+The Laurent expansion of \(f(z)\) about \(z=a\) can be written as
 
-$$\lim_{z\to 0} f(z) = 1,$$
+\[
+f(z)
+=
+\sum_{n=1}^{\infty}
+\frac{C_{-n}}{(z-a)^n}
++
+\sum_{n=0}^{\infty}
+C_n(z-a)^n.
+\]
 
-so nothing pathological is actually happening near the origin; redefining $f(0)=1$ makes the
-function analytic there too. This is a **removable singularity**, and the standing convention for
-the rest of the section (and the rest of the course) is that wherever one turns up, it's assumed
-to already have been dealt with this way — otherwise "singular at $z=a$" would technically include
-a lot of perfectly well-behaved points.
+The first summation is called the **singular part**, while the second summation is called the **regular part**.
 
-## 2. Simple Poles
+If the singular part contains an **infinite number of negative powers** of \((z-a)\), then \(z=a\) is called an **essential singularity**.
 
-The first genuinely interesting kind of singularity is the **simple pole**. $f(z)$ has a simple
-pole at $z=a$ if, in a sufficiently small neighbourhood of $a$, it can be written
+Thus,
 
-$$f(z) = \underbrace{\frac{C_{-1}}{z-a}}_{\text{singular part}} \;+\; \underbrace{\sum_{n=0}^{\infty} C_n (z-a)^n}_{\text{regular part}}$$
+\[
+\boxed{
+f(z)=
+\sum_{n=1}^{\infty}
+\frac{C_{-n}}{(z-a)^n}
++
+\sum_{n=0}^{\infty}
+C_n(z-a)^n
+}
+\]
 
-The regular part is an ordinary convergent power series — analytic straight through $z=a$; it may
-terminate after finitely many terms, or be absent entirely. The singular part is what actually
-blows up as $z \to a$. The coefficient $C_{-1}$ (finite, in general complex) is the **residue** of
-$f$ at $z=a$ — the notation reminds you it's the coefficient of $(z-a)^{-1}$.
+with infinitely many nonzero coefficients \(C_{-n}\) corresponds to an essential singularity at \(z=a\).
 
-At a simple pole, by definition, the singular part is *literally* just the one term
-$C_{-1}/(z-a)$ — but that doesn't mean $C_{-1}$ is always sitting there in plain sight. Example 2
-below is the case where it takes a bit of work to expose it.
+---
 
-### Example 1 — $f(z) = \sin(z)/z^2$
+## Laurent-Series Interpretation
 
-From the Maclaurin series of $\sin z$:
+The Laurent series is divided into two parts:
 
-$$\frac{\sin z}{z^2} = \underbrace{\frac 1z}_{\text{singular part}} + \underbrace{\left(-\frac{z}{3!}+\frac{z^3}{5!}-\cdots\right)}_{\text{regular part}}$$
+\[
+f(z)
+=
+\underbrace{
+\sum_{n=1}^{\infty}
+\frac{C_{-n}}{(z-a)^n}
+}_{\text{Singular part}}
++
+\underbrace{
+\sum_{n=0}^{\infty}
+C_n(z-a)^n
+}_{\text{Regular part}}.
+\]
 
-Simple pole at $z=0$, residue $=1$. No other finite singularities anywhere in the plane.
+### Singular part
 
-### Example 2 — $\mathrm{cosec}{cosec}(z)$
+\[
+\sum_{n=1}^{\infty}
+\frac{C_{-n}}{(z-a)^n}
+\]
 
-Here the pole location is clear ($\sin z$ has simple zeros at $z=n\pi,\ n\in\mathbb Z$, so
-$\mathrm{cosec}(z)=1/\sin(z)$ should have simple poles there) but the residue takes real
-work to extract. Taylor-expand $\sin z$ about $z=n\pi$:
+contains the negative powers of \((z-a)\).
 
-$$\sin z = (-1)^n(z-n\pi)\left[1-\frac16(z-n\pi)^2+\frac{1}{120}(z-n\pi)^4-\cdots\right]$$
+### Regular part
 
-Inverting the bracket via the binomial series gives
+\[
+\sum_{n=0}^{\infty}
+C_n(z-a)^n
+\]
 
-$$\mathrm{cosec}{cosec} z = \underbrace{\frac{(-1)^n}{z-n\pi}}_{\text{singular part}} + \underbrace{\frac{(-1)^n}{6}\left[(z-n\pi)+\frac{7}{60}(z-n\pi)^3+\cdots\right]}_{\text{regular part}}$$
+contains the non-negative powers.
 
-So $\mathrm{cosec}{cosec}(z)$ has a simple pole at every $z=n\pi$, with residue $(-1)^n$ — the sign
-alternates from one pole to the next along the real axis. Worth keeping in mind: the residue of a
-function need not be a single fixed number; it can (and here does) depend on *which* pole you're
-evaluating at.
+For an essential singularity, the singular part does not terminate.
 
-## 3. The Residue Formula
+---
 
-Doing a full Laurent expansion every time, as Example 2 required, is slow. In general, if $f$ has
-a simple pole at $z=a$, the residue can be pulled out directly as a limit:
+# 2. Comparison with a Pole
 
-$$
-\mathrm{Res}_{z=a} f(z) = C_{-1}
-= \lim_{z\to a}\left[(z-a)f(z)\right]
-$$
+For a pole of order \(N\),
 
-**Why it works:** multiplying by $(z-a)$ kills the $1/(z-a)$ blow-up, leaving $C_{-1}$ plus a power
-series in $(z-a)$. Every term of that series vanishes as $z\to a$, so only $C_{-1}$ survives.
+\[
+f(z)
+=
+\frac{C_{-N}}{(z-a)^N}
++
+\frac{C_{-(N-1)}}{(z-a)^{N-1}}
++\cdots+
+\frac{C_{-1}}{z-a}
++
+\sum_{n=0}^{\infty}C_n(z-a)^n.
+\]
 
-Simple poles very often arise in the form $f(z) = g(z)/h(z)$, with $g,h$ analytic at $z=a$,
-$g(a)\ne 0$, and $h$ having a *simple* zero at $a$ (i.e. $h(a)=0$, $h'(a)\ne 0$). In that case
-(52A) reduces to
+There are only a **finite number of negative powers**.
 
-$$\mathrm{Res}_{z=a} f(z) = \mathrm{Res}_{z=a}\frac{g(z)}{h(z)} = \frac{g(a)}{h'(a)}$$
+For an essential singularity,
 
-This is the version actually used most in practice — it reproduces both examples above almost
-instantly:
+\[
+f(z)
+=
+\cdots+
+\frac{C_{-3}}{(z-a)^3}
++
+\frac{C_{-2}}{(z-a)^2}
++
+\frac{C_{-1}}{z-a}
++
+C_0+C_1(z-a)+\cdots
+\]
 
-| Function | $g(z)$ | $h(z)$ | $h'(z)$ | Residue |
-|---|---|---|---|---|
-| $\sin z / z^2$ at $z=0$ | (direct limit, see below) | — | — | $1$ |
-| $\mathrm{cosec}{cosec} z$ at $z=n\pi$ | $1$ | $\sin z$ | $\cos z$ | $\dfrac{1}{\cos(n\pi)} = (-1)^n$ |
+and the negative-power part continues indefinitely.
 
-For $\sin z/z^2$,: $\displaystyle\lim_{z\to0} z\cdot\frac{\sin z}{z^2} = \lim_{z\to0}\frac{\sin z}{z} = 1$ — same answer as the series computation, no expansion needed.
+Therefore:
 
-**Caution:** the $g(a)/h'(a)$ shortcut needs $h'(a)\ne 0$ *specifically*. If $h'(a)=0$ too, the
-zero of $h$ isn't simple, $f$ has a higher-order pole, and this formula doesn't apply as-is (see
-§4). Also check $g(a)\ne 0$ separately — if $g$ vanishes there too, part or all of the pole can
-cancel against the zero of $g$, changing the order of the singularity.
+| Type of singularity | Negative powers in Laurent series |
+|---|---|
+| Removable singularity | None |
+| Pole of order \(N\) | Finite number |
+| Essential singularity | Infinitely many |
 
-## 4. Extension: Higher-Order (Multiple) Poles
+---
 
-$f(z)$ has a **pole of order $m$** at $z=a$ if, near $a$,
+# 3. Example of an Essential Singularity
 
-$$f(z) = \frac{C_{-m}}{(z-a)^m} + \frac{C_{-(m-1)}}{(z-a)^{m-1}} + \cdots + \frac{C_{-1}}{z-a} + \sum_{n\ge0} C_n(z-a)^n$$
+Consider
 
-The residue (still $C_{-1}$, the coefficient of the $(z-a)^{-1}$ term specifically — not any of
-the other negative-power coefficients) generalises to
+\[
+f(z)=e^{1/z}.
+\]
 
-$$\mathrm{Res}_{z=a} f(z) = \frac{1}{(m-1)!}\lim_{z\to a}\frac{d^{m-1}}{dz^{m-1}}\Big[(z-a)^m f(z)\Big]$$
+Using the Taylor expansion
 
-which is exactly same again when $m=1$ (the derivative and the factorial both drop out).
+\[
+e^w=\sum_{n=0}^{\infty}\frac{w^n}{n!},
+\]
 
-## References
+put
 
-1. Lecture notes, *PH502 — Complex Analysis, Module 1*, Section 5: "Singularities — Poles & Residues," pp. 60–64.
-2. A. K. Kapoor, *Complex Variables: Principles and Problem Sessions
+\[
+w=\frac{1}{z}.
+\]
+
+Therefore,
+
+\[
+e^{1/z}
+=
+\sum_{n=0}^{\infty}
+\frac{1}{n!z^n}.
+\]
+
+Hence,
+
+\[
+\boxed{
+e^{1/z}
+=
+1+\frac{1}{z}
++\frac{1}{2!z^2}
++\frac{1}{3!z^3}
++\cdots
+}
+\]
+
+The Laurent expansion contains infinitely many negative powers of \(z\).
+
+Therefore,
+
+\[
+\boxed{z=0\text{ is an essential singularity of }e^{1/z}.}
+\]
+
+The singular part is
+
+\[
+\frac{1}{z}
++\frac{1}{2!z^2}
++\frac{1}{3!z^3}
++\cdots
+\]
+
+and the regular part is simply
+
+\[
+1.
+\]
+
+---
+
+# 4. Residue at an Essential Singularity
+
+The residue of \(f(z)\) at \(z=a\) is always the coefficient of
+
+\[
+\frac{1}{z-a}.
+\]
+
+Therefore, if
+
+\[
+f(z)
+=
+\sum_{n=-\infty}^{\infty}
+C_n(z-a)^n,
+\]
+
+then
+
+\[
+\boxed{
+\operatorname{Res}(f,a)=C_{-1}.
+}
+\]
+
+This remains true whether the singularity is a pole or an essential singularity.
+
+For example,
+
+\[
+e^{1/z}
+=
+1+\frac{1}{z}
++\frac{1}{2!z^2}
++\cdots
+\]
+
+so
+
+\[
+\boxed{
+\operatorname{Res}(e^{1/z},0)=1.
+}
+\]
+
+---
+
+# 5. Laurent Series
+
+## Definition
+
+A Laurent series is a representation of a complex function in powers of both positive and negative integer powers of \((z-a)\):
+
+\[
+\boxed{
+f(z)
+=
+\sum_{n=-\infty}^{\infty}
+C_n(z-a)^n
+}
+\]
+
+or, equivalently,
+
+\[
+f(z)
+=
+\sum_{n=1}^{\infty}
+\frac{C_{-n}}{(z-a)^n}
++
+\sum_{n=0}^{\infty}
+C_n(z-a)^n.
+\]
+
+Unlike a Taylor series, a Laurent series can contain negative powers.
+
+---
+
+# 6. Why Laurent Series Are Needed
+
+Representations of complex functions involving positive and negative powers of \(z-a\) are called Laurent series.
+
+They are particularly useful near singular points.
+
+For example,
+
+\[
+\frac{1}{z-a}
+\]
+
+cannot be represented by an ordinary Taylor series about \(z=a\), because it is not analytic at \(a\).
+
+However, it already has a Laurent representation:
+
+\[
+\frac{1}{z-a}.
+\]
+
+Laurent series therefore provide a natural way to study complex functions near isolated singularities.
+
+---
+
+# 7. General Form of Laurent Series
+
+Suppose \(f(z)\) has an isolated singularity at \(z=a\).
+
+A Laurent expansion about \(z=a\) is
+
+\[
+\boxed{
+f(z)
+=
+\sum_{n=1}^{N}
+\frac{C_{-n}}{(z-a)^n}
++
+\sum_{n=0}^{\infty}
+C_n(z-a)^n
+}
+\]
+
+for a pole of finite order \(N\).
+
+For an essential singularity,
+
+\[
+\boxed{
+f(z)
+=
+\sum_{n=1}^{\infty}
+\frac{C_{-n}}{(z-a)^n}
++
+\sum_{n=0}^{\infty}
+C_n(z-a)^n.
+}
+\]
+
+---
+
+# 8. Region of Convergence of a Laurent Series
+
+A Laurent series generally converges in an **annular region** rather than a circular disk.
+
+Consider
+
+\[
+f(z)
+=
+\sum_{n=1}^{\infty}
+\frac{C_{-n}}{(z-a)^n}
++
+\sum_{n=0}^{\infty}
+C_n(z-a)^n.
+\]
+
+The two parts have different convergence conditions.
+
+---
+
+## 8.1 Regular Part
+
+Consider
+
+\[
+\sum_{n=0}^{\infty}
+C_n(z-a)^n.
+\]
+
+This is an ordinary power series.
+
+Suppose its radius of convergence is \(r_2\).
+
+Then it converges for
+
+\[
+\boxed{
+|z-a|<r_2.
+}
+\]
+
+---
+
+## 8.2 Singular Part
+
+Consider
+
+\[
+\sum_{n=1}^{\infty}
+\frac{C_{-n}}{(z-a)^n}.
+\]
+
+Introduce
+
+\[
+w=\frac{1}{z-a}.
+\]
+
+Then
+
+\[
+\sum_{n=1}^{\infty}
+\frac{C_{-n}}{(z-a)^n}
+=
+\sum_{n=1}^{\infty}
+C_{-n}w^n.
+\]
+
+Suppose the radius of convergence in the \(w\)-plane is \(r_1\).
+
+Then
+
+\[
+|w|<r_1.
+\]
+
+Since
+
+\[
+w=\frac{1}{z-a},
+\]
+
+we have
+
+\[
+\left|\frac{1}{z-a}\right|<r_1.
+\]
+
+Therefore,
+
+\[
+\boxed{
+|z-a|>\frac{1}{r_1}.
+}
+\]
+
+---
+
+# 9. Annular Region of Convergence
+
+For the complete Laurent series to converge, both parts must converge simultaneously.
+
+The regular part requires
+
+\[
+|z-a|<r_2,
+\]
+
+while the singular part requires
+
+\[
+|z-a|>\frac{1}{r_1}.
+\]
+
+Therefore,
+
+\[
+\boxed{
+\frac{1}{r_1}<|z-a|<r_2.
+}
+\]
+
+This is an **annular region** centered at \(z=a\).
+
+---
+
+## Geometrical Interpretation
+
+The Laurent series converges in the annular region
+
+\[
+\boxed{
+r_{\text{inner}}<|z-a|<r_{\text{outer}}
+}
+\]
+
+where
+
+\[
+r_{\text{inner}}=\frac{1}{r_1},
+\qquad
+r_{\text{outer}}=r_2.
+\]
+
+The center of the annulus is the singular point \(z=a\).
+
+```text
+                 Outer boundary
+              |z-a| = r₂
+          ______________________
+       .-'                      '-.
+     .'                            '.
+    /       Laurent series           \
+   |         converges               |
+   |                                  |
+   |       _____________              |
+   |      /             \             |
+   |     |   z = a       |            |
+   |      \_____________/             |
+    \       |z-a| = 1/r₁             /
+     '.                            .'
+       '-.______________________.-'
