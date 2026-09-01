@@ -1,1093 +1,236 @@
-In complex analysis, the behavior of a function near a point where it is not analytic is studied using the concept of **singularities**.
 
-If a function \(f(z)\) is analytic in some neighborhood of \(z=a\), except possibly at \(z=a\), then \(a\) is called an **isolated singular point**.
 
-The three important types of isolated singularities are:
 
-1. Removable singularity
-2. Pole
-3. Essential singularity
+## Part 1 — Essential Singularities & Laurent Series
+**Scribe: Person A · Notebook pp. 65–68 · PDF pp. 66–69**
 
----
+### 1.1 Essential Singularity `[p.65]`
 
-# 3. Classification of an Isolated Singularity
+Extending the definition of a pole: the singular part of $f(z)$ may involve an **unbounded** number of negative powers of $(z-a)$.
 
-The Laurent series gives a direct way of deciding what type of singularity is present at \(z=a\).
+$f(z)$ has an **isolated essential singularity** at $z=a$ if, in a neighbourhood of $z=a$, it can be written as
 
-Suppose
+$$f(z) = \underbrace{\sum_{n=1}^{\infty} \frac{c_{-n}}{(z-a)^n}}_{\text{singular part}} + \underbrace{\sum_{n=0}^{\infty} c_n (z-a)^n}_{\text{regular part}} \qquad (54A)$$
 
-\[
-f(z)=
-\sum_{n=-\infty}^{\infty}C_n(z-a)^n.
-\]
+As with a pole, $c_{-1}$ is still called the **residue** of $f(z)$ at the singularity.
 
-We look at the negative-power terms.
+**Worked example:** $f(z) = e^{1/z} = \displaystyle\sum_{n=1}^{\infty} \frac{1}{n!\,z^n} + 1$, valid for all $z \neq 0$. The series on the right converges absolutely, $f(z)$ has an essential singularity at $z=0$, residue $=1$, and the regular part is just the constant $1$.
 
-## 3.1 Removable Singularity
+### 1.2 Laurent Series `[p.66]`
 
-If there are no negative powers,
+Representations of complex functions with **both** positive and negative powers of $(z-a)$ (as in the equations for poles and essential singularities above) are called **Laurent series**.
 
-\[
-C_{-1}=C_{-2}=C_{-3}=\cdots=0,
-\]
+General form:
 
-then the Laurent series reduces to an ordinary Taylor series:
+$$f(z) = \sum_{n=1}^{N} \frac{c_{-n}}{(z-a)^n} + \sum_{n=0}^{\infty} c_n (z-a)^n \qquad (56A)$$
 
-\[
-f(z)=C_0+C_1(z-a)+C_2(z-a)^2+\cdots.
-\]
+- For a **pole**, $N$ is finite (order of the pole).
+- For an **essential singularity**, $N \to \infty$.
 
-In this case the singularity can be removed by defining a suitable value of \(f(a)\).
+**Region of validity — worked out from first principles:**
 
-Hence,
+1. *Regular part* is an ordinary (positive-power) convergent power series ⇒ converges inside a circle of radius $r_1$ centred at $z=a$. If the regular part is a polynomial ($c_{n>M}=0$) or, more generally, an entire function, then $r_1 = \infty$.
+2. *Singular part*: substitute $w = \dfrac{1}{z-a}$, so $\displaystyle\sum_{n=1}^{N}\frac{c_{-n}}{(z-a)^n} = \sum_{n=1}^N c_{-n}w^n$ — an ordinary power series **in $w$**, convergent inside $|w| < r_2$ for some $r_2$ (infinite if the singular part is a polynomial/entire function of $w$). `[p.67]`
+3. Translating $|w|<r_2$ back to the $z$-plane: $\left|\dfrac{1}{z-a}\right| < r_2 \iff |z-a| > \dfrac{1}{r_2}$.
+4. **Only if** $\dfrac{1}{r_2} < r_1$ (i.e. $r_1 r_2 > 1$) does an **annular region** exist:
 
-\[
-\boxed{\text{No principal part} \Rightarrow \text{removable singularity}}
-\]
+$$\frac{1}{r_2} < |z-a| < r_1$$
 
----
+Inside this annulus both the regular and singular parts converge absolutely — **this annulus is the region of convergence of the Laurent series.**
 
-## 3.2 Pole
+**Edge cases:**
+- If $r_2 \to \infty$ (i.e. $1/r_2 = 0$), the series converges on a **punctured disk** of radius $r_1$ centred at $z=a$ (with $z=a$ itself excluded).
+- In some cases the outer radius $r_1 = \infty$ too, so the annulus extends to infinity.
 
-If there are a finite number of negative powers, for example,
+**Revisit the $e^{1/z}$ example:** $e^{1/z} = \sum_{n=1}^{\infty}\frac{1}{n!}\frac{1}{z^n} + 1$ converges for all $|z|>0$, with $r_1 = \infty$ and $1/r_2 = 0$. Hence the Laurent series is convergent for **all $z\neq 0$** (including as $z\to\infty$). `[p.68]`
 
-\[
-f(z)=
-\frac{C_{-N}}{(z-a)^N}
-+\frac{C_{-(N-1)}}{(z-a)^{N-1}}
-+\cdots+
-\frac{C_{-1}}{z-a}
-+C_0+C_1(z-a)+\cdots,
-\]
+**Conclusion:** A Laurent series is, in general, convergent in some annular region whose inner radius may shrink to $0$ and whose outer radius may extend to $\infty$.
 
-then \(z=a\) is a **pole of order \(N\)**.
+### 1.3 Singularity at Infinity — setup only `[p.68]`
 
-The important point is that the principal part terminates.
+To classify the behaviour of $f(z)$ at $z=\infty$ in the extended complex plane:
 
-Thus,
+1. Change variable $w = 1/z$ (this maps $z=\infty \to w=0$).
+2. Examine the singularity of $\phi(w) \equiv f(1/w)$ **at $w=0$**.
+3. The nature of that singularity determines the nature of the singularity of $f(z)$ at $z=\infty$.
 
-\[
-\boxed{
-\text{Finite number of negative powers}
-\Rightarrow \text{pole}
-}
-\]
+*(Worked examples for this step are continued in Part 2.)*
 
 ---
 
-## 3.3 Essential Singularity
+## Part 2 — Singularity at Infinity & Cauchy's Residue Theorem
+**Scribe: Person B · Notebook pp. 68–71 · PDF pp. 69–72**
 
-If the Laurent series contains infinitely many negative powers,
+### 2.1 Singularity at infinity — worked examples `[pp.68–70]`
 
-\[
-f(z)=
-\frac{C_{-1}}{z-a}
-+
-\frac{C_{-2}}{(z-a)^2}
-+
-\frac{C_{-3}}{(z-a)^3}
-+\cdots
-+
-C_0+C_1(z-a)+\cdots,
-\]
+Using $\phi(w) \equiv f(1/w)$ and checking its behaviour at $w=0$:
 
-then \(z=a\) is called an **essential singularity**.
+- **Ex. 1:** $f(z) = z \Rightarrow \phi(w) = 1/w$, a simple pole at $w=0$ ⟹ $f(z)$ has a **simple pole at $z=\infty$**.
+- **Ex. 2:** $f(z) = \sum_{m=0}^{n} a_m z^m$ (degree-$n$ polynomial) $\Rightarrow \phi(w) = \sum_{m=0}^n a_m w^{-m}$, a **pole of order $n$ at $w=0$** ⟹ $f(z)$ has a **pole of order $n$ at $z=\infty$**.
+- **Ex. 3:** $f(z) = e^{cz} = \sum_{n=0}^\infty \frac{1}{n!}z^n \Rightarrow \phi(w) = \sum_{n=0}^\infty \frac{1}{n!}w^{-n}$, an **essential singularity at $w=0$** ⟹ $e^{cz}$ has an **essential singularity at $z=\infty$**.
+- By the same argument, $\cos z,\ \sin z,\ \sinh z,\ \cosh z$ (all entire functions) also have essential singularities at $z=\infty$. Their power series (valid for $0\le|z|<\infty$) can therefore be viewed as **Laurent series** on the whole finite plane $\mathbb{C}$.
+- **Ex. 4:** $e^{1/z} + e^{z} = \sum_{n=1}^{\infty}\frac{1}{n!\,z^n} + 2 + \sum_{n=1}^{\infty}\frac{z^n}{n!}$ *(56A form)* has essential singularities at **both** $z=0$ and $z=\infty$ ⟹ its Laurent series is valid in the annulus $0<|z|<\infty$.
 
-Therefore,
+> **Note (deferred):** the concept of a *residue at infinity* is more subtle than the nature of the singularity there, and is treated later in the course — not in this page range.
 
-\[
-\boxed{
-\text{Infinitely many negative powers}
-\Rightarrow \text{essential singularity}
-}
-\]
+### 2.2 Cauchy's Residue Theorem `[p.70]`
 
-This is the main criterion used for identifying an essential singularity.
+As a consequence of the contour-deformation theorem, we obtain:
 
----
+> **Cauchy's Residue Theorem.** Let $C$ be a closed contour lying entirely in a region where $f(z)$ is analytic except for isolated poles and essential singularities at the set of points $\{z_k,\ k=1,2,\dots\}$, with **no** singularities lying on $C$ itself. If $C$ encircles the singularities once, in the positive (CCW) sense, then
+> $$\oint_C f(z)\,dz = 2\pi i \sum_k \operatorname*{Res}_{z=z_k} f(z) \qquad (66A)$$
 
-# 4. Essential Singularity - Definition
+### 2.3 Winding number `[p.71]`
 
-Let \(f(z)\) have an isolated singularity at \(z=a\).
+- The RHS of $(66A)$ picks up a factor $-1$ if $C$ encircles the singularities in the CW (negative) sense.
+- If a singularity is encircled $r$ times (note: with **simple, non-self-intersecting** curves, only $r \in \{\dots,-1,0,1,\dots\}$ occur — $|r|>1$ isn't possible), its contribution to the sum is $\pm r$ times the residue there (minus sign for CW encircling). $r$ is called the **winding number** of the contour about that singularity.
+- Examples sketched in the notes: an open curve around $z_0$ with net winding $r=0$; a CW loop around $z_0$ giving $r=-1$; a loop that wraps twice CCW giving $r=2$.
 
-If the Laurent expansion of \(f(z)\) about \(z=a\) has the form
+### 2.4 Motivating the theorem (not a full proof) `[pp.71–72]`
 
-\[
-f(z)
-=
-\sum_{n=1}^{\infty}
-\frac{C_{-n}}{(z-a)^n}
-+
-\sum_{n=0}^{\infty}
-C_n(z-a)^n,
-\]
+The notes explicitly **do not prove** the theorem in general, but motivate it for a simple contour $C$ encircling isolated singularities $z_1, z_2, z_3,\dots$ The key tool is the **deformation theorem**, valid as long as:
 
-where infinitely many of the coefficients \(C_{-n}\) are non-zero, then \(z=a\) is an **essential singularity**.
+(i) no part of $C$ leaves the region of analyticity of $f(z)$;
+(ii) no singularity of $f(z)$ is crossed by the contour during the deformation (this also preserves the winding number).
 
-In simple words:
-
-> An essential singularity is an isolated singularity for which the principal part of the Laurent series contains infinitely many terms.
+*(The explicit pinching-off construction and completion of the argument are continued at the start of Part 3.)*
 
 ---
 
-# 5. Example: \(e^{1/z}\)
+## Part 3 — Deformation Argument, and Real Integrals: Trigonometric Functions
+**Scribe: Person C · Notebook pp. 71–75 · PDF pp. 72–76**
 
-Consider
+### 3.1 Completing the motivation for the Residue Theorem `[pp.72–73]`
 
-\[
-f(z)=e^{1/z}.
-\]
+Deform $C$ (enclosing $z_1,z_2,z_3,z_4,\dots$) into thin "channels" connecting small circles around each singularity, plus the singularities' own small circles. As the channels are brought arbitrarily close together, their contributions cancel pairwise, leaving only small circles around each pole — reducing the problem to the elementary result
 
-We know the exponential function has the expansion
+$$\oint_C \frac{dz}{(z-a)^n} = 2\pi i\,\delta_{n,1}, \qquad C:\text{ circle around } z=a \qquad (72A)$$
 
-\[
-e^w
-=
-1+w+\frac{w^2}{2!}
-+\frac{w^3}{3!}
-+\cdots.
-\]
+Any term $(z-a)^n$ with $n\ge0$ or $n<-1$ in the Laurent expansion of $f(z)$ around $z_k$ contributes **zero** by $(72A)$ — only the $n=-1$ (residue) term survives. This is exactly the content of Cauchy's Residue Theorem, $(66A)$.
 
-Putting
+> **Practical note from the lecturer:** since the theorem applies to a *closed* contour, the recurring trick for evaluating real definite integrals $\int_a^b f(x)\,dx$ is to relate them to a contour integral of the analytic continuation $f(z)$, by **adding a piece that closes the contour but contributes zero** to the integral — "adding a well-chosen zero" to arrive at the answer.
 
-\[
-w=\frac{1}{z},
-\]
+### 3.2 Section 7 — Evaluating Real Integrals Using Residue Theorems `[p.73]`
 
-we get
+#### (a) Trigonometric functions over $(0, 2\pi)$ `[pp.73–75]`
 
-\[
-e^{1/z}
-=
-1+\frac{1}{z}
-+\frac{1}{2!z^2}
-+\frac{1}{3!z^3}
-+\cdots.
-\]
+**Type:**
+$$I = \int_0^{2\pi} f(\sin\theta, \cos\theta)\, d\theta$$
+where $f$ is finite for all $\theta$ and is a single-valued rational function of $\sin\theta,\cos\theta$.
 
-Therefore,
+**Method:** substitute $z = e^{i\theta}$, so $dz = ie^{i\theta}d\theta \Rightarrow d\theta = -i\,\dfrac{dz}{z}$, and
 
-\[
-\boxed{
-e^{1/z}
-=
-1+\frac{1}{z}
-+\frac{1}{2!z^2}
-+\frac{1}{3!z^3}
-+\cdots
-}
-\]
+$$\sin\theta = \frac{z - z^{-1}}{2i}, \qquad \cos\theta = \frac{z+z^{-1}}{2}$$
 
-Here the negative powers are
+As $\theta$ runs over $(0,2\pi)$, $z$ traces the **unit circle**. Substituting:
 
-\[
-\frac{1}{z},
-\quad
-\frac{1}{z^2},
-\quad
-\frac{1}{z^3},
-\quad\ldots
-\]
+$$I = -i\oint f\!\left(\frac{z-z^{-1}}{2i}, \frac{z+z^{-1}}{2}\right)\frac{dz}{z} = (-i)(2\pi i)\sum_{\substack{\text{poles inside}\\ \text{unit circle}}} \operatorname*{Res} \frac{f(\cdots)}{z}$$
 
-and they continue indefinitely.
+**Worked example:**
+$$I = \int_0^{2\pi} \frac{d\theta}{1+a\cos\theta}, \qquad |a|<1$$
 
-Hence,
+Substituting:
+$$I = -i\oint_{|z|=1} \frac{dz}{1+\tfrac{a}{2}(z+1/z)} = -\frac{2i}{a}\oint_{|z|=1} \frac{dz}{z^2 + \tfrac{2}{a}z + 1}$$
 
-\[
-\boxed{z=0\text{ is an essential singularity of }e^{1/z}.}
-\]
+Factor the denominator as $z^2 + \tfrac{2}{a}z+1 = (z-z_+)(z-z_-)$ with
+
+$$z_\pm = \frac{-1 \pm \sqrt{1-a^2}}{a}, \qquad z_+ z_- = 1,\qquad z_+ - z_- = \frac{2\sqrt{1-a^2}}{a}$$
+
+Since $z_+z_- = 1$ and $|z_-|>1$, it follows $|z_+|<1$ — only $z_+$ lies **inside** the unit circle. By the residue theorem:
+
+$$I = -i\frac{2}{a}(2\pi i)\operatorname*{Res}_{z=z_+}\frac{1}{(z-z_+)(z-z_-)} = -i\frac{2}{a}(2\pi i)\frac{1}{z_+-z_-} = \frac{4\pi}{a}\cdot\frac{a}{2\sqrt{1-a^2}}$$
+
+$$\boxed{I = \frac{2\pi}{\sqrt{1-a^2}}}$$
+
+*(The next subsection, "Integrals of decaying rational functions on $(-\infty,\infty)$", begins right after this example and is picked up in Part 4.)*
 
 ---
 
-# 6. Principal Part of \(e^{1/z}\)
+## Part 4 — Rational-Function Integrals & Complex-Exponential Integrals (Jordan's Lemma)
+**Scribe: Person D · Notebook pp. 76–81 · PDF pp. 77–82**
 
-For
+### 4.1 (b) Integrals of decaying rational functions on $(-\infty,\infty)$ `[pp.75–77]`
 
-\[
-e^{1/z}
-=
-1+\frac{1}{z}
-+\frac{1}{2!z^2}
-+\frac{1}{3!z^3}
-+\cdots,
-\]
+**Type:** $I = \displaystyle\int_{-\infty}^{\infty} f(x)\,dx$, with:
 
-the regular part is
+- $f(z)$ analytic in the **upper half-plane** except for a finite number of poles, none on the real axis;
+- $\displaystyle\lim_{|z|\to\infty} f(z)$ vanishes **strictly faster than $1/z$** (nothing special about the upper half — the same method works in the lower half if $f(z)$ decays fast enough there instead).
 
-\[
-\boxed{1}
-\]
+**Strategy:** close the contour with a large semicircle $\Gamma$ of radius $R$ in the upper half-plane, enclosing all poles there. Let $\Gamma = AB \cup BCA$ (real segment $[-R,R]$ plus the semicircular arc).
 
-and the principal part is
+$$\oint_{\Gamma} f(z)\,dz = 2\pi i \sum(\text{residues on upper plane}) = \int_{AB} f\,dz + \int_{BCA} f\,dz$$
 
-\[
-\boxed{
-\frac{1}{z}
-+\frac{1}{2!z^2}
-+\frac{1}{3!z^3}
-+\cdots
-}
-\]
+**Arc lemma (proof sketch):** with $z=Re^{i\theta}$,
 
-Since the principal part has infinitely many terms, the singularity at \(z=0\) is essential.
+$$\left|\lim_{R\to\infty}\int_{\theta_1}^{\theta_2}\!\!\big(iRe^{i\theta}\big)f(Re^{i\theta})\,d\theta\right| \le (\theta_2-\theta_1)\lim_{R\to\infty}\big|f(Re^{i\theta})Re^{i\theta}\big| = 0$$
 
----
+since $f(z)\to 0$ faster than $1/z$. Hence $\displaystyle\lim_{R\to\infty}\int_{BCA} f\,dz = 0$, and
 
-# 7. Residue at an Essential Singularity
+$$I = \lim_{R\to\infty}\int_{AB} f(z)\,dz = \oint_\Gamma f(z)\,dz$$
 
-The residue is defined as the coefficient of the term
+**Worked example 1:**
+$$I = \int_0^\infty \frac{dx}{1+x^2} = \frac12\int_{-\infty}^\infty \frac{dx}{1+x^2}$$
 
-\[
-\frac{1}{z-a}
-\]
+$f(z) = \dfrac{1}{1+z^2}$ vanishes faster than $1/z$; simple poles at $z=\pm i$, only $z=i$ is inside the upper-half contour.
 
-in the Laurent expansion.
+$$I = \frac12\oint_\Gamma f(z)\,dz = \frac{2\pi i}{2}\operatorname*{Res}_{z=i}\frac{1}{(z+i)(z-i)} = \pi i\cdot\frac{1}{2i} \;\Rightarrow\; \boxed{I = \frac{\pi}{2}}$$
 
-If
+(Consistent with the elementary result $\int \dfrac{dx}{1+x^2} = \tan^{-1}x$.)
 
-\[
-f(z)=
-\sum_{n=-\infty}^{\infty}
-C_n(z-a)^n,
-\]
+**Worked example 2:**
+$$I = \int_{-\infty}^{\infty} \frac{dx}{(x^2+a^2)(x^2+b^2)}, \qquad \text{take } b>a>0 \text{ for simplicity}$$
 
-then
+$f(z) = \dfrac{1}{(z^2+a^2)(z^2+b^2)}$ has simple poles at $z = \pm ia, \pm ib$; only $z=ia,\ ib$ lie in the upper half-plane.
 
-\[
-\boxed{
-\operatorname{Res}(f,a)=C_{-1}.
-}
-\]
+$$\operatorname*{Res}_{z=ia} f(z) = \frac{1}{2ia(b^2-a^2)}, \qquad \operatorname*{Res}_{z=ib} f(z) = \frac{1}{2ib(a^2-b^2)}$$
 
-This definition is valid for all isolated singularities, including essential singularities.
+$$\oint_C f\,dz = 2\pi i\left[\frac{1}{2ia(b^2-a^2)} + \frac{1}{2ib(a^2-b^2)}\right] = \pi\left(\frac{1}{a(b^2-a^2)} - \frac{1}{b(b^2-a^2)}\right)$$
 
-For example,
+$$\boxed{I = \frac{\pi}{ab(a+b)}}$$
 
-\[
-e^{1/z}
-=
-1+\frac{1}{z}
-+\frac{1}{2!z^2}
-+\cdots
-\]
+### 4.2 (c) Integrals with complex exponentials — Jordan's Lemma `[pp.79–81]`
 
-The coefficient of \(1/z\) is \(1\).
+**Type:**
+$$I = \int_{-\infty}^\infty f(x)\,e^{iax}\,dx, \qquad a>0 \quad (\text{this is just a Fourier transform!})$$
 
-Therefore,
+Assume:
+- $f(z)$ analytic in the upper half-plane;
+- $\displaystyle\lim_{|z|\to\infty} f(z) = 0$ for $0\le \arg z \le \pi$ — a **weaker** requirement than needing $f(z) < 1/|z|$.
 
-\[
-\boxed{
-\operatorname{Res}(e^{1/z},0)=1.
-}
-\]
+Close with the same semicircular contour $\Gamma$ (upper half):
 
----
+$$\oint_\Gamma f(z)e^{iaz}\,dz = 2\pi i\sum_j \operatorname*{Res}_{z=z_j} f(z)e^{iaz}, \qquad \lim_{R\to\infty}\oint_\Gamma f e^{iaz}dz = I + \underbrace{\lim_{R\to\infty}\int_{BCA} f(z)e^{iaz}\,dz}_{I_R}$$
 
-# 8. Laurent Series and Region of Convergence
+**Jordan's Lemma (proof that $I_R \to 0$):** with $z=Re^{i\theta}$,
 
-An important point about Laurent series is that they generally converge in an **annular region**.
+$$I_R = \int_0^\pi iRe^{i\theta}\,d\theta\; f(Re^{i\theta})\, e^{iaR\cos\theta}\,e^{-aR\sin\theta}$$
 
-Suppose
+Choose $R$ large enough that $|f(Re^{i\theta})| < \varepsilon$ for all $0\le\theta\le\pi$ (possible since $f\to0$ as $|z|\to\infty$). Then
 
-\[
-f(z)=
-\sum_{n=1}^{\infty}
-\frac{C_{-n}}{(z-a)^n}
-+
-\sum_{n=0}^{\infty}
-C_n(z-a)^n.
-\]
+$$|I_R| \le \varepsilon R \int_0^\pi e^{-aR\sin\theta}\,d\theta = 2\varepsilon R\int_0^{\pi/2} e^{-aR\sin\theta}\,d\theta$$
 
-We need to determine the region where both series converge.
+Using the geometric bound $\sin\theta \ge \dfrac{2\theta}{\pi}$ for $0\le\theta\le\pi/2$:
+
+$$|I_R| \le 2\varepsilon R \int_0^{\pi/2} e^{-2aR\theta/\pi}\,d\theta = 2\varepsilon R\cdot\frac{1-e^{-aR}}{2aR/\pi} < \frac{\pi}{a}\varepsilon \;\;\xrightarrow{R\to\infty}\;\; 0$$
+
+$$\boxed{\lim_{R\to\infty} I_R = 0} \qquad \text{(Jordan's Lemma)}$$
+
+*(If $a<0$ instead, close the contour in the **lower** half-plane.)*
+
+**Worked example:**
+$$I = \int_0^\infty \frac{\cos x}{x^2+1}\,dx = \frac12\int_{-\infty}^\infty \frac{\cos x}{x^2+1}\,dx = \frac12\,\mathrm{Re}\left[\int_{-\infty}^\infty \frac{e^{ix}}{x^2+1}\,dx\right]$$
+
+Take $f(z) = \dfrac{e^{iz}}{z^2+1}$, simple poles at $z=\pm i$, only $z=i$ enclosed by the upper semicircle.
+
+$$\oint_\Gamma f(z)\,dz = 2\pi i \operatorname*{Res}_{z=i} f(z) = 2\pi i\lim_{z\to i}(z-i)\frac{e^{iz}}{(z+i)(z-i)} = 2\pi i \cdot \frac{e^{-1}}{2i} = \frac{\pi}{e}$$
+
+By Jordan's Lemma the arc contribution vanishes as $R\to\infty$, so $\displaystyle\int_{-\infty}^\infty \frac{e^{ix}}{x^2+1}dx = \frac{\pi}{e}$, and since this is already real,
+
+$$\boxed{I = \frac{\pi}{e}}$$
 
 ---
 
-# 9. Convergence of the Regular Part
+## References
 
-Consider the regular part:
-
-\[
-\sum_{n=0}^{\infty}C_n(z-a)^n.
-\]
-
-This is an ordinary power series.
-
-Let its radius of convergence be \(r_2\).
-
-Then it converges for
-
-\[
-\boxed{
-|z-a|<r_2.
-}
-\]
-
-So the regular part gives an **outer boundary**.
-
----
-
-# 10. Convergence of the Singular Part
-
-Now consider the singular part:
-
-\[
-\sum_{n=1}^{\infty}
-\frac{C_{-n}}{(z-a)^n}.
-\]
-
-The negative powers make the convergence slightly different.
-
-Put
-
-\[
-w=\frac{1}{z-a}.
-\]
-
-Then
-
-\[
-\frac{1}{(z-a)^n}=w^n.
-\]
-
-Therefore,
-
-\[
-\sum_{n=1}^{\infty}
-\frac{C_{-n}}{(z-a)^n}
-=
-\sum_{n=1}^{\infty}C_{-n}w^n.
-\]
-
-Suppose the power series in \(w\) has radius of convergence \(r_1\).
-
-Then
-
-\[
-|w|<r_1.
-\]
-
-Since
-
-\[
-w=\frac{1}{z-a},
-\]
-
-we get
-
-\[
-\left|\frac{1}{z-a}\right|<r_1.
-\]
-
-Therefore,
-
-\[
-\frac{1}{|z-a|}<r_1
-\]
-
-and hence
-
-\[
-\boxed{
-|z-a|>\frac{1}{r_1}.
-}
-\]
-
-Thus the singular part gives the **inner boundary** of the annulus.
-
----
-
-# 11. Final Region of Convergence
-
-For the complete Laurent series to converge, both conditions must hold:
-
-From the regular part,
-
-\[
-|z-a|<r_2,
-\]
-
-and from the singular part,
-
-\[
-|z-a|>\frac{1}{r_1}.
-\]
-
-Combining them,
-
-\[
-\boxed{
-\frac{1}{r_1}<|z-a|<r_2.
-}
-\]
-
-This is the general form of the **annular region of convergence**.
-
----
-
-# 12. Geometrical Meaning
-
-The condition
-
-\[
-\frac{1}{r_1}<|z-a|<r_2
-\]
-
-represents an annulus centered at \(z=a\).
-
-The inner circle is
-
-\[
-|z-a|=\frac{1}{r_1}
-\]
-
-and the outer circle is
-
-\[
-|z-a|=r_2.
-\]
-
-The Laurent series is valid in the region between these two circles.
-
-```text
-                 |z-a| = r₂
-            ---------------------
-          /                       \
-        /                           \
-       |       Laurent series        |
-       |          converges           |
-       |                              |
-       |       -------------          |
-       |      /             \         |
-       |     |     z = a     |        |
-       |      \             /         |
-       |       -------------          |
-        \                             /
-          \_________________________/
-
-             |z-a| = 1/r₁
-```
-
-The exact boundaries depend on the singularities of the function.
-
----
-
-# 13. Why an Annulus Appears
-
-This is one of the important conceptual points.
-
-For a Taylor series, we normally have
-
-\[
-|z-a|<R,
-\]
-
-which gives a circular disk.
-
-For a Laurent series, we have both positive and negative powers.
-
-The positive-power part gives
-
-\[
-|z-a|<r_2,
-\]
-
-while the negative-power part gives
-
-\[
-|z-a|>\frac{1}{r_1}.
-\]
-
-Therefore the common region is
-
-\[
-\boxed{
-\frac{1}{r_1}<|z-a|<r_2.
-}
-\]
-
-Hence a Laurent series naturally converges in an annulus.
-
----
-
-# 14. Special Cases
-
-## Case 1: \(r_1=\infty\)
-
-If
-
-\[
-r_1=\infty,
-\]
-
-then
-
-\[
-\frac{1}{r_1}=0.
-\]
-
-Therefore,
-
-\[
-0<|z-a|<r_2.
-\]
-
-So the region becomes a **punctured disk**.
-
-\[
-\boxed{
-0<|z-a|<r_2
-}
-\]
-
-The point \(z=a\) itself is excluded.
-
----
-
-## Case 2: \(r_2=\infty\)
-
-If
-
-\[
-r_2=\infty,
-\]
-
-then
-
-\[
-\frac{1}{r_1}<|z-a|<\infty.
-\]
-
-Thus the Laurent series converges outside a circle.
-
-\[
-\boxed{
-|z-a|>\frac{1}{r_1}
-}
-\]
-
----
-
-## Case 3: Both radii are infinite
-
-If
-
-\[
-r_1=\infty,
-\qquad
-r_2=\infty,
-\]
-
-then
-
-\[
-0<|z-a|<\infty.
-\]
-
-Thus the series converges throughout the complex plane except at \(z=a\).
-
----
-
-# 15. Example: \(e^{1/z}\) and its Region of Convergence
-
-Again consider
-
-\[
-f(z)=e^{1/z}.
-\]
-
-Its Laurent expansion is
-
-\[
-e^{1/z}
-=
-1+\frac{1}{z}
-+\frac{1}{2!z^2}
-+\frac{1}{3!z^3}
-+\cdots.
-\]
-
-The corresponding power series in
-
-\[
-w=\frac{1}{z}
-\]
-
-is
-
-\[
-e^w
-=
-\sum_{n=0}^{\infty}\frac{w^n}{n!}.
-\]
-
-The exponential series converges for every finite \(w\).
-
-Therefore, there is no finite inner restriction coming from this series.
-
-Hence the Laurent series converges for
-
-\[
-\boxed{
-0<|z|<\infty.
-}
-\]
-
-So,
-
-\[
-\boxed{
-e^{1/z}\text{ has an essential singularity at }z=0
-}
-\]
-
-and its Laurent series converges everywhere except at the singular point itself.
-
----
-
-# 16. Another Useful Example
-
-Consider
-
-\[
-f(z)=\frac{1}{z(z-1)}.
-\]
-
-The function has singularities at
-
-\[
-z=0,\qquad z=1.
-\]
-
-Suppose we want a Laurent expansion about
-
-\[
-z=0.
-\]
-
-We can write
-
-\[
-\frac{1}{z(z-1)}
-=
--\frac{1}{z}\frac{1}{1-z}.
-\]
-
-For
-
-\[
-|z|<1,
-\]
-
-we use
-
-\[
-\frac{1}{1-z}
-=
-1+z+z^2+z^3+\cdots.
-\]
-
-Therefore,
-
-\[
-f(z)
-=
--\frac{1}{z}
-(1+z+z^2+z^3+\cdots).
-\]
-
-Hence,
-
-\[
-\boxed{
-f(z)
-=
--\frac{1}{z}
--1-z-z^2-z^3-\cdots
-}
-\]
-
-valid for
-
-\[
-\boxed{|z|<1,\quad z\neq0.}
-\]
-
-This is a Laurent series because it contains the negative-power term \(1/z\).
-
-The singularity at \(z=0\) is a **simple pole**, not an essential singularity, because there is only one negative-power term.
-
----
-
-# 17. Important Observation About Laurent Expansions
-
-The same function can have **different Laurent expansions in different regions**.
-
-For example, when a function has more than one singularity, the annular region changes depending on which singularities are enclosed.
-
-This is why, while finding a Laurent expansion, we should always specify the region such as
-
-\[
-|z-a|<R,
-\]
-
-or
-
-\[
-R_1<|z-a|<R_2,
-\]
-
-or
-
-\[
-|z-a|>R.
-\]
-
-A Laurent expansion is therefore not just a formula; its **region of validity is also important**.
-
----
-
-# 18. Laurent Series vs Taylor Series
-
-| Taylor Series | Laurent Series |
-|---|---|
-| Contains only non-negative powers | Contains positive and negative powers |
-| Usually converges in a disk | Usually converges in an annulus |
-| Used when function is analytic at the center | Useful near singularities |
-| Form: \(\sum C_n(z-a)^n\) | Form: \(\sum C_n(z-a)^n\), \(n=-\infty\) to \(\infty\) |
-| No principal part | May contain a principal part |
-
----
-
-# 19. Singularity Classification from Laurent Series
-
-A very useful way to remember the classification is:
-
-\[
-\boxed{
-\begin{array}{c|c}
-\text{Singularity} & \text{Principal Part} \\ \hline
-\text{Removable} & 0 \\
-\text{Pole} & \text{Finite number of terms} \\
-\text{Essential} & \text{Infinite number of terms}
-\end{array}
-}
-\]
-
-For example:
-
-### Removable
-
-\[
-f(z)=1+z+z^2+\cdots
-\]
-
-No negative powers.
-
----
-
-### Pole
-
-\[
-f(z)=
-\frac{2}{z^3}
-+\frac{1}{z}
-+1+z+\cdots
-\]
-
-Finite number of negative powers.
-
-Pole of order \(3\).
-
----
-
-### Essential singularity
-
-\[
-f(z)=
-\frac{1}{z}
-+\frac{1}{2!z^2}
-+\frac{1}{3!z^3}
-+\cdots
-\]
-
-Infinitely many negative powers.
-
-Therefore, essential singularity.
-
----
-
-# 20. Residue and the Principal Part
-
-Although the principal part may contain infinitely many terms for an essential singularity, the residue is still only the coefficient of
-
-\[
-(z-a)^{-1}.
-\]
-
-If
-
-\[
-f(z)
-=
-\cdots+
-\frac{C_{-3}}{(z-a)^3}
-+
-\frac{C_{-2}}{(z-a)^2}
-+
-\frac{C_{-1}}{z-a}
-+
-C_0+\cdots,
-\]
-
-then
-
-\[
-\boxed{
-\operatorname{Res}(f,a)=C_{-1}.
-}
-\]
-
-This is particularly useful when evaluating contour integrals using the residue theorem.
-
----
-
-# 21. Important Points for Problem Solving
-
-When asked to identify or analyze a singularity, the following procedure is useful:
-
-### Step 1
-
-Find the possible singular points of \(f(z)\).
-
-### Step 2
-
-Expand the function about the required point \(z=a\).
-
-### Step 3
-
-Write the Laurent series.
-
-### Step 4
-
-Look at the negative-power terms.
-
-### Step 5
-
-Classify the singularity:
-
-\[
-\begin{cases}
-\text{No negative powers} &\rightarrow \text{removable}\\
-\text{Finite negative powers} &\rightarrow \text{pole}\\
-\text{Infinite negative powers} &\rightarrow \text{essential}
-\end{cases}
-\]
-
-### Step 6
-
-Determine the region of convergence.
-
-### Step 7
-
-If required, identify the residue from the coefficient of
-
-\[
-\frac{1}{z-a}.
-\]
-
----
-
-# 22. Essential Singularity - Important Properties
-
-An essential singularity behaves very differently from a pole.
-
-For a pole of order \(N\),
-
-\[
-f(z)\sim \frac{C}{(z-a)^N}.
-\]
-
-The behavior is controlled by a finite leading term.
-
-For an essential singularity, there is no finite highest negative power. For example,
-
-\[
-e^{1/(z-a)}
-=
-1+
-\frac{1}{z-a}
-+
-\frac{1}{2!(z-a)^2}
-+
-\frac{1}{3!(z-a)^3}
-+\cdots.
-\]
-
-There is no largest value of \(n\) in the negative-power part.
-
-This infinite principal part is the characteristic feature of an essential singularity.
-
----
-
-# 23. Connection with the Arfken Treatment
-
-A useful way to understand the Laurent expansion is to consider the function in terms of two series:
-
-\[
-f(z)=
-\underbrace{\sum_{n=0}^{\infty}a_n(z-a)^n}_{\text{positive/regular part}}
-+
-\underbrace{\sum_{n=1}^{\infty}\frac{b_n}{(z-a)^n}}_{\text{negative/principal part}}.
-\]
-
-The regular series behaves like an ordinary power series in \(z-a\), while the principal part can be studied by making the transformation
-
-\[
-w=\frac{1}{z-a}.
-\]
-
-This explains why the two portions impose different convergence conditions.
-
-The resulting common region is an annulus:
-
-\[
-\boxed{
-R_1<|z-a|<R_2.
-}
-\]
-
-This is one of the central ideas behind Laurent expansions.
-
----
-
-# 24. Short Conceptual Summary
-
-The main idea can be summarized as follows:
-
-\[
-\boxed{
-\text{Laurent series}
-=
-\text{principal part}
-+
-\text{regular part}
-}
-\]
-
-where
-
-\[
-\text{principal part}
-=
-\sum_{n=1}^{\infty}
-\frac{C_{-n}}{(z-a)^n}
-\]
-
-and
-
-\[
-\text{regular part}
-=
-\sum_{n=0}^{\infty}
-C_n(z-a)^n.
-\]
-
-The number of negative powers tells us the type of singularity.
-
-\[
-\boxed{
-\begin{aligned}
-&\text{No negative powers} &&\rightarrow \text{Removable}\\
-&\text{Finite negative powers} &&\rightarrow \text{Pole}\\
-&\text{Infinite negative powers} &&\rightarrow \text{Essential}
-\end{aligned}
-}
-\]
-
-For convergence,
-
-\[
-\boxed{
-R_1<|z-a|<R_2.
-}
-\]
-
-Thus, Laurent series are especially important in complex analysis because they allow us to study functions in regions where Taylor series cannot be used directly.
-
----
-
-# 25. Quick Revision
-
-### Definition of Laurent series
-
-\[
-\boxed{
-f(z)=\sum_{n=-\infty}^{\infty}C_n(z-a)^n
-}
-\]
-
-### Principal part
-
-\[
-\boxed{
-\sum_{n=1}^{\infty}
-\frac{C_{-n}}{(z-a)^n}
-}
-\]
-
-### Regular part
-
-\[
-\boxed{
-\sum_{n=0}^{\infty}
-C_n(z-a)^n
-}
-\]
-
-### Essential singularity
-
-\[
-\boxed{
-\text{Infinitely many non-zero negative-power terms}
-}
-\]
-
-### Example
-
-\[
-\boxed{
-e^{1/z}
-=
-1+\frac1z+\frac1{2!z^2}+\frac1{3!z^3}+\cdots
-}
-\]
-
-Therefore,
-
-\[
-\boxed{z=0\text{ is an essential singularity}.}
-\]
-
-### Residue
-
-\[
-\boxed{
-\operatorname{Res}(f,a)=C_{-1}
-}
-\]
-
-### General region of convergence
-
-\[
-\boxed{
-R_1<|z-a|<R_2
-}
-\]
-
----
-
-# References
-
-1. G. B. Arfken, G. Weber and F. E. Harris, *Mathematical Methods for Physicists*, Academic Press.
-2. Class notes: Complex Analysis — Laurent Series and Essential Singularity.
-3. Standard theory of complex variables, isolated singularities and Laurent expansions.
+1. **Class notes:** `PH502_Lec_Mod1_Complex_Analysis.pdf`, pp. 66–82
+2. **Arfken, G. B., Weber, H. J.
