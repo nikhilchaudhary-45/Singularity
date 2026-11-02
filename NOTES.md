@@ -165,13 +165,11 @@ $$y_{1}(x) = J_{0}(x) = 1 - \frac{x^{2}}{4} + \frac{x^{4}}{64} - O(x^{6})[cite: 
 
 $$y_{2}(x) = J_{0}(x)\int^{x}\frac{\exp\left[-\int^{x_{2}}x_{1}^{-1}dx_{1}\right]dx_{2}}{\left[1 - \frac{x_{2}^{2}}{4} + \frac{x_{2}^{4}}{64} - \dots\right]^{2}}[cite: 1]$$
 
-$$\left[1 - \frac{x_{1}^{2}}{4} + \frac{x_{1}^{4}}{64}\right]^{-2} = 1 + \frac{x_{1}^{2}}{2} + \frac{5x_{1}^{4}}{32} + \dots$$
-
-$$y_{2}(x) = J_{0}(x)\left\{\ln x + \frac{x^{2}}{4} + \frac{5x^{4}}{128} + \dots\right\}$$
+$$y_{2}(x) = J_{0}(x)\{\ln x + \frac{x^{2}}{4} + \frac{5x^{4}}{128} + \dots\}$$
 
 This second solution is essentially (up to additive constants) the Neumann function $Y_{0}(x)$:
 
-$$Y_{0}(x) = \frac{2}{\pi}\left[\ln x - \ln 2 + \gamma\right] J_{0}(x) + \frac{2}{\pi}\left\{\frac{x^{2}}{4} - \frac{3x^{4}}{128} + \dots\right\}$$
+$$Y_{0}(x) = \frac{2}{\pi}[\ln x - \ln 2 + \gamma] J_{0}(x) + \frac{2}{\pi}\{\frac{x^{2}}{4} - \frac{3x^{4}}{128} + \dots\}$$
 
 *($\gamma$ = Euler-Mascheroni constant)*
 
