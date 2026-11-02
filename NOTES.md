@@ -1,1628 +1,509 @@
-# PH502 – Mathematical Methods
-## Lecture 3: Differential Equations and Sturm–Liouville Theory
+## Page 20
 
-**Source:** PH502_Lec_Mod3.pdf (Pages 20–42)
+$$=P(x)(y_{1}^{\prime}w_{23}-y_{2}^{\prime}w_{13}+y_{3}^{\prime}w_{12})$$
 
----
+$$=P(x)\det\begin{pmatrix}y_{1}&y_{2}&y_{3}\\y_{1}^{\prime}&y_{2}^{\prime}&y_{3}^{\prime}\\y_{1}^{\prime}&y_{2}^{\prime}&y_{3}^{\prime}\end{pmatrix}=0 \quad \text{2 rows same}$$
 
-# 1. Second-Order Homogeneous ODEs
+$$\Rightarrow W = 0$$
 
-Consider a second-order homogeneous linear differential equation:
+$$\therefore \{y_{1},y_{2},y_{3}\} \text{ are linearly dependent}$$
 
-\[
-y''+P(x)y'+Q(x)y=0
-\]
+**A Linear Second order homogeneous ODE has at most 2 lin. indep solutions.**
 
-Let \(y_1(x)\) and \(y_2(x)\) be two linearly independent solutions.
+### Second solution:
+Let $$y^{\prime\prime}+P(x)y^{\prime}+Q(x)y=0$$
 
-The Wronskian is defined as
+$y_{1}, y_{2}$ be two lin-indep solns.
 
-\[
-W(y_1,y_2)=
-\begin{vmatrix}
-y_1 & y_2\\
-y_1' & y_2'
-\end{vmatrix}
-\]
+$$W=y_{1}y_{2}^{\prime}-y_{2}y_{1}^{\prime}$$
 
-Therefore,
+From earlier, $W^{\prime}=-P(x)W \quad \text{--- (20B)}$
 
-\[
-W=y_1y_2'-y_2y_1'
-\]
+$$y^{\prime\prime}+Q(x)y=0 \quad \text{--- (20A)}$$
 
-Differentiating,
+**Remark:** If $P(x)=0 \implies W^{\prime}=0 \Rightarrow W=y_{1}y_{2}^{\prime}-y_{1}^{\prime}y_{2}=\text{const}$
 
-\[
-W'=y_1y_2''-y_2y_1''
-\]
-
-Using the original differential equation,
-
-\[
-y''=-P(x)y'-Q(x)y
-\]
-
-we obtain
-
-\[
-W'=-P(x)W
-\]
-
-Hence,
-
-\[
-\boxed{W'=-P(x)W}
-\]
-
-This is known as **Abel's identity**.
-
-## 1.1 Abel's Identity
-
-Rearranging,
-
-\[
-\frac{dW}{W}=-P(x)dx
-\]
-
-Integrating from \(a\) to \(x\),
-
-\[
-\ln\frac{W(x)}{W(a)}
-=-\int_a^x P(x_1)dx_1
-\]
-
-Therefore,
-
-\[
-\boxed{
-W(x)=W(a)\exp\left[
--\int_a^x P(x_1)dx_1
-\right]
-}
-\]
-
-**Important observations:**
-
-- If \(P(x)\) remains finite in the domain, a nonzero Wronskian remains nonzero.
-- If \(W(a)=0\), then the Wronskian remains zero wherever Abel's identity applies.
-- A second-order homogeneous linear ODE has at most two linearly independent solutions.
+*(See tutorial problem from 20A. $\rightarrow$ show every SOLO can be turned into this form)*
 
 ---
 
-# 2. Second Solution of a Homogeneous ODE
+## Page 21
 
-Consider
+In general from (20B):
 
-\[
-y''+P(x)y'+Q(x)y=0
-\]
+$$\frac{dW}{W}=-Pdx \implies W(x)=\exp\left[-\int^{x}P(x^{\prime})dx^{\prime}\right]$$
 
-Suppose one solution \(y_1(x)\) is already known.
+**Note:** If $P(x)$ remains finite in domain, $W(x) \neq 0$ unless $W(a)=0$.
 
-We want to determine another linearly independent solution \(y_2(x)\).
+Wronskian $>0$ or never $0$. But if $P(x)$ is not finite, we have to be careful to ensure $W(x) \neq 0$.
 
-From the Wronskian,
+Now:
+$$W(x)=y_{1}y_{2}^{\prime}-y_{1}^{\prime}y_{2}=y_{1}^{2}\frac{d}{dx}\left(\frac{y_{2}}{y_{1}}\right) \quad \text{--- (21B)}$$
 
-\[
-W=y_1y_2'-y_2y_1'
-\]
+Combining (21A) & (21B):
+$$\frac{d}{dx}\left(\frac{y_{2}}{y_{1}}\right)=\frac{W(a)\exp\left[-\int_{a}^{x}P(x_{1})dx_{1}\right]}{y_{1}^{2}}$$
 
-Dividing by \(y_1^2\),
+Integrating:
+$$\int_{b}^{x}d\left(\frac{y_{2}}{y_{1}}\right)$$
 
-\[
-\frac{W}{y_1^2}
-=
-\frac{y_2'}{y_1}
--\frac{y_2y_1'}{y_1^2}
-\]
+$$y_{2}(x)=y_{1}(x)W(a)\int_{b}^{x}\frac{\exp\left[-\int_{a}^{x_{2}}P(x_{1})dx_{1}\right]dx_{2}}{[y_{1}(x_{2})]^{2}} \quad \text{--- (21C)}$$
 
-Thus,
+$a, b$ arbitrary constants. A term $\propto y_{1}(x)$ can be neglected as it is simply a constant multiplying $y_{1}(x)$ (like $a_{0}$ in the series soln).
 
-\[
-\frac{d}{dx}\left(\frac{y_2}{y_1}\right)
-=
-\frac{W}{y_1^2}
-\]
-
-Using Abel's identity,
-
-\[
-W(x)=W(a)
-\exp\left[-\int_a^xP(x_1)dx_1\right]
-\]
-
-Therefore,
-
-\[
-\frac{d}{dx}\left(\frac{y_2}{y_1}\right)
-=
-\frac{W(a)\exp[-\int_a^xP(x_1)dx_1]}
-{y_1^2}
-\]
-
-Integrating,
-
-\[
-\boxed{
-y_2(x)=y_1(x)
-\int^x
-\frac{\exp[-\int P(x_1)dx_1]}
-{y_1(x_2)^2}
-dx_2
-}
-\]
-
-This is the **reduction of order formula**.
-
-### Special Case
-
-If
-
-\[
-P(x)=0
-\]
-
-then
-
-\[
-\boxed{
-y_2(x)=y_1(x)\int^x\frac{dx_2}{y_1(x_2)^2}
-}
-\]
-
-## 2.1 Example
-
-Consider
-
-\[
-\frac{d^2y}{dx^2}+y=0
-\]
-
-One solution is
-
-\[
-y_1(x)=\sin x
-\]
-
-Since \(P(x)=0\), use reduction of order:
-
-\[
-y_2(x)=\sin x\int\frac{dx}{\sin^2x}
-\]
-
-\[
-=\sin x\int\csc^2x\,dx
-\]
-
-\[
-=-\sin x\cot x
-\]
-
-Hence,
-
-\[
-\boxed{y_2(x)=-\cos x}
-\]
-
-The two independent solutions are
-
-\[
-y_1=\sin x,\qquad y_2=-\cos x
-\]
+We can always choose $a$ such that $W(a) = 1$.
 
 ---
 
-# 3. Second Solution of a Series Expansion
+## Page 22
 
-The reduction of order method can be directly applied when one series solution is available.
+We can also make (21C) an indefinite integral. Choice of $a,b$ will only add constants or terms proportional to $y_{1}(x)$:
 
-To obtain further insight into Fuchs' theorem, expand \(P(x)\) and \(Q(x)\) as power series.
+$$y_{2}(x)=y_{1}(x)\int^{x}\frac{\exp\left[-\int^{x_{2}}P(x_{1})dx_{1}\right]dx_{2}}{[y_{1}(x_{2})]^{2}} \quad \text{--- (22A)}$$
 
-We write
+If $P(x)=0$:
+$$y_{2}(x)=y_{1}(x)\int^{x}\frac{dx_{2}}{[y_{1}(x_{2})]^{2}} \quad \text{--- (22B)}$$
 
-\[
-xP(x)=\sum_{i=0}^{\infty}p_ix^i
-\]
+### Example: SHO
+$$\frac{d^{2}y}{dx^{2}}+y=0$$
 
-and
+Use (22B):
+$$y_{1}(x)=\sin x$$
 
-\[
-Q(x)=\sum_{j=-2}^{\infty}q_jx^j
-\]
+$$y_{2}(x)=\sin x \int^{x}\frac{dx_{2}}{\sin^{2}x_{2}}$$
 
-These expansions are considered around \(x=0\).
+$$=\sin x \int^{x}\csc^{2}x_{2}\,dx_{2}$$
 
-Assume a Frobenius series solution:
+$$=\sin x (-\cot x) = -\cos x$$
 
-\[
-\boxed{
-y(x)=\sum_{\lambda=0}^{\infty}
-a_\lambda x^{s+\lambda}
-}
-\]
-
-Substitution into the differential equation gives the indicial equation.
-
-## 3.1 Indicial Equation
-
-The lowest power of \(x\) gives
-
-\[
-s(s-1)+p_0s+q_{-2}=0
-\]
-
-Therefore,
-
-\[
-\boxed{
-s(s-1)+p_0s+q_{-2}=0
-}
-\]
-
-Let the two roots be
-
-\[
-s_1,\quad s_2
-\]
-
-The nature of the second solution depends on the relationship between these roots.
+### Second Solution of a Series Expansion:
+Method of (22A) can be directly applied when one series solution is available.
 
 ---
 
-# 4. Bessel Equation: Second Solution
+## Page 23
 
-Consider Bessel's equation:
+But further insight into Fuchs' theorem is obtained if we do this by expanding $P(x)$ & $Q(x)$ as a power series as well as a simple series expansion.
 
-\[
-x^2y''+xy'+(x^2-\alpha^2)y=0
-\]
+*(Regular singularity at $x=0$, which is the minimum criterion for Frobenius)*
 
-Dividing by \(x^2\),
+Towards this we first expand $xP(x)$ & $x^{2}Q(x)$ as a power series:
 
-\[
-y''+\frac{1}{x}y'
-+\left(1-\frac{\alpha^2}{x^2}\right)y=0
-\]
+$$xP(x)=\sum_{i=0}^{\infty}p_{i}x^{i} \implies P(x)=\sum_{i=-1}^{\infty}p_{i}x^{i}$$
 
-Comparing with
+$$x^{2}Q(x)=\sum_{j=0}^{\infty}q_{j-2}x^{j} \implies Q(x)=\sum_{j=-2}^{\infty}q_{j}x^{j}$$
 
-\[
-y''+P(x)y'+Q(x)y=0
-\]
+Develop a few terms of a power series solution for the convergent soln $y_{1}(x)$ & then use (22A) to get $y_{2}(x)$ by integrating term by term.
 
-we get
+**Step 1:**
+$$y^{\prime\prime}+(p_{-1}x^{-1}+p_{0}+p_{1}x+\dots)y^{\prime}+(q_{-2}x^{-2}+q_{-1}x^{-1}+\dots)y=0$$
 
-\[
-P(x)=x^{-1}
-\]
+**Step 2:**
+Substitute $y(x)=\sum_{\lambda=0}^{\infty}a_{\lambda}x^{s+\lambda}$
 
-\[
-Q(x)=1-\alpha^2x^{-2}
-\]
+$$\sum_{\lambda=0}^{\infty}(s+\lambda)(s+\lambda-1)a_{\lambda}x^{s+\lambda-2}+\sum_{i=-1}^{\infty}p_{i}x^{i}\sum_{\lambda=0}^{\infty}(s+\lambda)a_{\lambda}x^{\lambda+s-1}+\sum_{j=-2}^{\infty}q_{j}x^{j}\sum_{\lambda=0}^{\infty}a_{\lambda}x^{s+\lambda}=0$$
 
-Thus,
+Assume $p_{-1}, q_{-2}$ gives indicial equation $(\lambda=0)$:
 
-\[
-p_0=1,\qquad q_{-2}=-\alpha^2
-\]
+$$s(s-1)+p_{-1}s+q_{-2}=0$$
 
-The indicial equation becomes
+$$s^{2}+(p_{-1}-1)s+q_{-2}=0 \quad \text{--- (23B)}$$
 
-\[
-s(s-1)+s-\alpha^2=0
-\]
-
-\[
-s^2-\alpha^2=0
-\]
-
-Hence,
-
-\[
-\boxed{s_1=\alpha,\qquad s_2=-\alpha}
-\]
-
-For integer order \(n\), the roots differ by an integer.
-
-The known solution corresponds to the larger root:
-
-\[
-y_1(x)=x^\alpha\sum_{\lambda=0}^{\infty}
-a_\lambda x^\lambda
-\]
-
-Using reduction of order,
-
-\[
-y_2(x)=y_1(x)
-\int
-\frac{\exp[-\int P(x)dx]}
-{y_1(x)^2}dx
-\]
-
-Since
-
-\[
-P(x)=\frac1x
-\]
-
-we have
-
-\[
-\exp\left[-\int\frac1x dx\right]
-=\frac1x
-\]
-
-Therefore,
-
-\[
-y_2(x)=y_1(x)
-\int\frac{dx}{xy_1(x)^2}
-\]
-
-For the integer-difference case, the general structure of the second solution is
-
-\[
-\boxed{
-y_2(x)=y_1(x)\ln|x|
-+\sum_{j=-n}^{\infty}d_jx^{j-\alpha}
-}
-\]
-
-where the coefficients depend on the particular equation.
-
-## 4.1 Example: Bessel Equation of Order Zero
-
-For \(n=0\),
-
-\[
-P(x)=\frac1x,\qquad Q(x)=1
-\]
-
-The indicial equation is
-
-\[
-s^2=0
-\]
-
-Thus, the two roots coincide:
-
-\[
-s=0
-\]
-
-The first solution is
-
-\[
-J_0(x)=1-\frac{x^2}{4}
-+\frac{x^4}{64}-\cdots
-\]
-
-Using reduction of order,
-
-\[
-y_2(x)=J_0(x)
-\int
-\frac{dx}{x[J_0(x)]^2}
-\]
-
-Expanding the integrand and integrating gives
-
-\[
-\boxed{
-y_2(x)=J_0(x)
-\left[
-\ln x+\frac{x^2}{4}
-+\frac{5x^4}{128}+\cdots
-\right]
-}
-\]
-
-This second solution is related to the Neumann function \(Y_0(x)\).
-
-The conventional second solution can be expressed as
-
-\[
-Y_0(x)=\frac{2}{\pi}
-\left[
-\left(\ln\frac{x}{2}+\gamma\right)J_0(x)
-+\frac{x^2}{4}
--\frac{3x^4}{128}
-+\cdots
-\right]
-\]
-
-where \(\gamma\) is Euler's constant.
-
-**Important:** The second solution may contain a logarithmic term when the indicial roots coincide or differ by an integer.
+Let the two roots of indicial equation be $s_{1}, s_{2}$.
 
 ---
 
-# 5. Inhomogeneous Linear ODEs
+## Page 24
 
-So far, we have considered homogeneous linear ODEs.
+Let $s_{1}-s_{2}=n$ (an integer). First root gives:
 
-Now consider the inhomogeneous equation:
+$$y_{1}(x)=x^{s_{1}}\sum_{j=0}^{\infty}a_{j}x^{j} \implies y_{1}(x)=x^{s_{1}}(a_{0}+a_{1}x+a_{2}x^{2}+\dots)$$
 
-\[
-\boxed{
-y''+P(x)y'+Q(x)y=F(x)
-}
-\]
+Now plug into (22A):
 
-## 5.1 Variation of Parameters
+$$y_{2}(x)=y_{1}(x)\int^{x}\frac{\exp\left[-\int^{x_{2}}P(x_{1})dx_{1}\right]dx_{2}}{[y_{1}(x_{2})]^{2}}$$
 
-Suppose \(y_1(x)\) and \(y_2(x)\) are two linearly independent solutions of the corresponding homogeneous equation.
+Expand integrand:
 
-Assume a solution of the form
+$$P(x)=\frac{p_{-1}}{x}+p_{0}+p_{1}x+\dots$$
 
-\[
-\boxed{
-y(x)=u_1(x)y_1(x)+u_2(x)y_2(x)
-}
-\]
+$$\int^{x_{2}}P(x_{1})dx_{1}=p_{-1}\ln x_{2}+p_{0}x_{2}+\frac{p_{1}x_{2}^{2}}{2}+\dots$$
 
-where \(u_1(x)\) and \(u_2(x)\) are functions to be determined.
+$$\exp\left[-\int^{x_{2}}P(x_{1})dx_{1}\right]=x_{2}^{-p_{-1}}\exp[-p_{0}x_{2}-\frac{p_{1}x_{2}^{2}}{2}-\dots]$$
 
-Differentiating,
+$$=x_{2}^{-p_{-1}}(1-p_{0}x_{2}+\dots)$$
 
-\[
-y'=u_1y_1'+u_2y_2'
-+u_1'y_1+u_2'y_2
-\]
+Now expand $[y_{1}(x_{2})]^{-2}$:
 
-Choose the auxiliary condition
+$$[y_{1}(x_{2})]^{-2}=x_{2}^{-2s_{1}}a_{0}^{-2}\left(1+\frac{a_{1}}{a_{0}}x_{2}+\dots\right)^{-2}$$
 
-\[
-\boxed{
-u_1'y_1+u_2'y_2=0
-}
-\]
+$$=x_{2}^{-2s_{1}}a_{0}^{-2}\left(1-2\frac{a_{1}}{a_{0}}x_{2}+\dots\right)$$
 
-Then,
+Combining terms in integrand:
 
-\[
-y'=u_1y_1'+u_2y_2'
-\]
-
-Differentiating again,
-
-\[
-y''=u_1y_1''+u_2y_2''
-+u_1'y_1'+u_2'y_2'
-\]
-
-Substituting into the original differential equation and using the homogeneous equations,
-
-\[
-y_1''+Py_1'+Qy_1=0
-\]
-
-\[
-y_2''+Py_2'+Qy_2=0
-\]
-
-we obtain
-
-\[
-\boxed{
-u_1'y_1'+u_2'y_2'=F(x)
-}
-\]
-
-Therefore, the two equations are
-
-\[
-u_1'y_1+u_2'y_2=0
-\]
-
-\[
-u_1'y_1'+u_2'y_2'=F(x)
-\]
-
-In matrix form,
-
-\[
-\begin{pmatrix}
-y_1&y_2\\
-y_1'&y_2'
-\end{pmatrix}
-\begin{pmatrix}
-u_1'\\u_2'
-\end{pmatrix}
-=
-\begin{pmatrix}
-0\\F(x)
-\end{pmatrix}
-\]
-
-The determinant is the Wronskian:
-
-\[
-W=y_1y_2'-y_2y_1'
-\]
-
-Solving,
-
-\[
-\boxed{
-u_1'=-\frac{y_2F(x)}{W}
-}
-\]
-
-\[
-\boxed{
-u_2'=\frac{y_1F(x)}{W}
-}
-\]
-
-Integrating,
-
-\[
-u_1=-\int\frac{y_2F(x)}{W}dx
-\]
-
-\[
-u_2=\int\frac{y_1F(x)}{W}dx
-\]
-
-Thus, the general solution is
-
-\[
-\boxed{
-y=C_1y_1+C_2y_2
--y_1\int\frac{y_2F}{W}dx
-+y_2\int\frac{y_1F}{W}dx
-}
-\]
-
-## 5.2 Lecture Example
-
-Consider
-
-\[
-(1-x)y''+xy'-y=(1-x)^2
-\]
-
-The homogeneous equation is
-
-\[
-(1-x)y''+xy'-y=0
-\]
-
-Two solutions are
-
-\[
-y_1=x,\qquad y_2=e^x
-\]
-
-Therefore,
-
-\[
-y_1'=1,\qquad y_2'=e^x
-\]
-
-Using the auxiliary condition,
-
-\[
-xu_1'+e^xu_2'=0
-\]
-
-The second equation is
-
-\[
-u_1'+e^xu_2'=F(x)
-\]
-
-Dividing the original equation by \(1-x\), the forcing function in standard form is
-
-\[
-F(x)=1-x
-\]
-
-Solving the two simultaneous equations gives
-
-\[
-\boxed{u_1'=1}
-\]
-
-\[
-\boxed{u_2'=-xe^{-x}}
-\]
-
-Integrating,
-
-\[
-u_1=x
-\]
-
-\[
-u_2=(x+1)e^{-x}
-\]
-
-The particular solution is
-
-\[
-y_p=u_1y_1+u_2y_2
-\]
-
-\[
-=x^2+(x+1)
-\]
-
-\[
-=x^2+x+1
-\]
-
-Hence,
-
-\[
-\boxed{
-y=C_1x+C_2e^x+x^2+x+1
-}
-\]
+$$\frac{\exp\left[-\int^{x_{2}}P(x_{1})dx_{1}\right]}{[y_{1}(x_{2})]^{2}}=x_{2}^{-p_{-1}-2s_{1}}(c_{0}+c_{1}x_{2}+c_{2}x_{2}^{2}+\dots)$$
 
 ---
 
-# 6. Sturm–Liouville Theory
+## Page 25
 
-So far, we have studied methods to solve ODEs.
+From (23B): $s_{1}+s_{2}=1-p_{-1} \implies -p_{-1}-2s_{1}=s_{2}-s_{1}-1=-n-1$
 
-Now we shift our focus to general properties of solutions of ODEs appearing in many specific physics problems.
+$$y_{2}(x)=y_{1}(x)\int_{1}^{x}[c_{0}x_{2}^{-n-1}+c_{1}x_{2}^{-n}+c_{2}x_{2}^{-n+1}+\dots+c_{n}x_{2}^{-1}+\dots]dx_{2}$$
 
-We also use the language of linear algebra:
+Leads to a coefficient $c_{n}$ multiplying $\ln(x)$ term!
 
-- Vector spaces
-- Eigenvalue problems
-- Inner products
-- Eigenfunctions
+$$\implies y_{2}(x)=c_{n}y_{1}(x)\ln|x|+x^{s_{2}}\text{(power series)}$$
 
-A typical physical problem controlled by an ODE has:
+In summary, the form of the second solution, given the first solution was obtained from an indicial root $s_{1}$ and second is $s_{2}=s_{1}-n$:
 
-1. Boundary conditions that the solution must satisfy.
-2. A parameter whose value should be selected so that the boundary conditions are satisfied.
+$$y_{2}(x)=y_{1}(x)\ln|x|+\sum_{j=-n}^{\infty}d_{j}x^{j+s_{1}} \quad \text{--- (25A)}$$
 
-The boundary conditions and differentiability requirements define the function space.
+### Example: Bessel with $n=0$
+$$P(x)=x^{-1}, \quad Q(x)=1$$
 
-Usually, the parameter is selected such that we obtain an eigenvalue equation in the function space.
+$$p_{-1}=1, \quad q_{0}=1$$
 
-## 6.1 Example: Standing Waves of a Vibrating String
+Indicial equation: $s^{2}-n^{2}=s^{2}=0 \implies s=0$
 
-Consider a vibrating string clamped at both ends.
-
-The differential equation is
-
-\[
-\boxed{
-\frac{d^2\psi}{dx^2}+k^2\psi=0
-}
-\]
-
-where:
-
-- \(\psi(x)\) is the amplitude of displacement.
-- \(k\) is a parameter.
-
-The boundary conditions are
-
-\[
-\psi(0)=0,\qquad \psi(l)=0
-\]
-
-The general solution is
-
-\[
-\psi(x)=A\sin(kx)+B\cos(kx)
-\]
-
-Applying the first boundary condition,
-
-\[
-\psi(0)=0
-\]
-
-\[
-B=0
-\]
-
-Therefore,
-
-\[
-\psi(x)=A\sin(kx)
-\]
-
-Applying the second boundary condition,
-
-\[
-\psi(l)=0
-\]
-
-\[
-A\sin(kl)=0
-\]
-
-For a nontrivial solution, \(A\ne0\).
-
-Hence,
-
-\[
-\sin(kl)=0
-\]
-
-\[
-kl=n\pi
-\]
-
-Therefore,
-
-\[
-\boxed{
-k_n=\frac{n\pi}{l}
-}
-\]
-
-where
-
-\[
-n=1,2,3,\ldots
-\]
-
-The eigenfunctions are
-
-\[
-\boxed{
-\psi_n(x)=A_n\sin\left(\frac{n\pi x}{l}\right)
-}
-\]
-
-The boundary conditions lead to discrete values of the parameter. This is called **quantization**.
-
-## 6.2 Inner Product
-
-Define the inner product on the function space:
-
-\[
-\boxed{
-\langle f|g\rangle
-=\int_0^l f^*(x)g(x)dx
-}
-\]
-
-Normalization requires
-
-\[
-\langle\psi_n|\psi_n\rangle=1
-\]
-
-Thus,
-
-\[
-\int_0^l|\psi_n(x)|^2dx=1
-\]
-
-The normalized eigenfunctions are
-
-\[
-\boxed{
-\psi_n(x)=\sqrt{\frac{2}{l}}
-\sin\left(\frac{n\pi x}{l}\right)
-}
-\]
-
-They satisfy
-
-\[
-\boxed{
-\langle\psi_n|\psi_m\rangle=\delta_{nm}
-}
-\]
+From first soln we have:
+$$y_{1}(x)=J_{0}(x)=1-\frac{x^{2}}{4}+\frac{x^{4}}{64}-O(x^{6})$$
 
 ---
 
-# 7. Hermitian Operators
+## Page 26
 
-The eigenvalue equation can be written as
+$$y_{2}(x)=J_{0}(x)\int^{x}\frac{\exp\left[-\int^{x_{2}}x_{1}^{-1}dx_{1}\right]dx_{2}}{\left[1-\frac{x_{2}^{2}}{4}+\frac{x_{2}^{4}}{64}-\dots\right]^{2}}$$
 
-\[
-\mathcal L\psi=\lambda\psi
-\]
+$$\left[1-\frac{x_{1}^{2}}{4}+\frac{x_{1}^{4}}{64}\right]^{-2}=1+\frac{x_{1}^{2}}{2}+\frac{5x_{1}^{4}}{32}+\dots$$
 
-where
+$$y_{2}(x)=J_{0}(x)\left\{\ln x+\frac{x^{2}}{4}+\frac{5x^{4}}{128}+\dots\right\}$$
 
-\[
-\boxed{
-\mathcal L=-\frac{d^2}{dx^2}
-}
-\]
+This second solution is essentially (up to constants) the Neumann function $Y_{0}(x)$:
 
-More generally, a second-order differential operator can be written as
+$$Y_{0}(x)=\frac{2}{\pi}[\ln x-\ln 2+\gamma]J_{0}(x)+\frac{2}{\pi}\left\{\frac{x^{2}}{4}-\frac{3x^{4}}{128}+\dots\right\}$$
 
-\[
-\boxed{
-\mathcal L=
-p_0(x)\frac{d^2}{dx^2}
-+p_1(x)\frac{d}{dx}
-+p_2(x)
-}
-\]
+*($\gamma$ = Euler-Mascheroni constant)*
 
-The key question is:
-
-**When is \(\mathcal L\) a Hermitian operator?**
-
-## 7.1 Generalized Inner Product
-
-For functions defined on the interval \([a,b]\), define
-
-\[
-\boxed{
-\langle v|u\rangle
-=\int_a^b v^*(x)u(x)w(x)dx
-}
-\]
-
-where \(w(x)\) is the weight function.
-
-The operator \(\mathcal L\) is Hermitian if
-
-\[
-\boxed{
-\langle v|\mathcal Lu\rangle
-=
-\langle\mathcal Lv|u\rangle
-}
-\]
-
-for all functions in the appropriate function space.
-
-The standard inner product corresponds to
-
-\[
-w(x)=1
-\]
-
-The reason for studying Hermitian operators is that they possess important properties:
-
-- Real eigenvalues.
-- Orthogonality of eigenfunctions corresponding to distinct eigenvalues.
+Obtaining the second solution using form (25A) is also possible as shown in Arfken & Weber Example 7.6.5, but the process is somewhat different from the usual series solution due to negative powers.
 
 ---
 
-# 8. Self-Adjoint Condition
+## Page 27
 
-Consider
+## h). Inhomogeneous Linear ODEs:
+So far we have looked at homogeneous Linear ODEs, how about inhomogeneous cases?
 
-\[
-\mathcal L=
-p_0(x)\frac{d^2}{dx^2}
-+p_1(x)\frac{d}{dx}
-+p_2(x)
-\]
+$$y^{\prime\prime}+P(x)y^{\prime}+Q(x)y=F(x) \quad \text{--- (27A)}$$
 
-First, restrict ourselves to the standard inner product:
+### Variation of Parameters:
+Consider a soln of the form:
+$$y(x)=u_{1}(x)y_{1}(x)+u_{2}(x)y_{2}(x)$$
 
-\[
-\langle v|u\rangle
-=\int_a^b v^*(x)u(x)dx
-\]
+where $y_{1}, y_{2}$ are solns of the homogeneous equation.
 
-For Hermiticity,
+$$y^{\prime}(x)=u_{1}y_{1}^{\prime}+u_{2}y_{2}^{\prime}+(y_{1}u_{1}^{\prime}+y_{2}u_{2}^{\prime})$$
 
-\[
-\langle v|\mathcal Lu\rangle
-=
-\langle\mathcal Lv|u\rangle
-\]
+Choose $u_{1}, u_{2}$ st.:
+$$y_{1}u_{1}^{\prime}+y_{2}u_{2}^{\prime}=0 \quad \text{--- (27B)}$$
 
-The left-hand side is
+$$\implies y^{\prime}(x)=u_{1}y_{1}^{\prime}+u_{2}y_{2}^{\prime}$$
 
-\[
-\int_a^b v^*
-\left[
-p_0u''+p_1u'+p_2u
-\right]dx
-\]
+Differentiating again:
+$$y^{\prime\prime}=u_{1}y_{1}^{\prime\prime}+u_{2}y_{2}^{\prime\prime}+u_{1}^{\prime}y_{1}^{\prime}+u_{2}^{\prime}y_{2}^{\prime} \quad \text{--- (27C)}$$
 
-Using integration by parts,
+Plugging into (27A):
+$$(u_{1}y_{1}^{\prime\prime}+u_{2}y_{2}^{\prime\prime}+u_{1}^{\prime}y_{1}^{\prime}+u_{2}^{\prime}y_{2}^{\prime})+P(x)(u_{1}y_{1}^{\prime}+u_{2}y_{2}^{\prime})+Q(x)(u_{1}y_{1}+u_{2}y_{2})=F(x)$$
 
-\[
-\int_a^b v^*p_0u''dx
-=
-\left[v^*p_0u'-(p_0v^*)'u\right]_a^b
-+\int_a^b(p_0v^*)''u\,dx
-\]
-
-Similarly,
-
-\[
-\int_a^b v^*p_1u'dx
-=
-[v^*p_1u]_a^b
--\int_a^b(p_1v^*)'u\,dx
-\]
-
-Comparing the integral terms, we obtain
-
-\[
-p_0''-p_1'=0
-\]
-
-and
-
-\[
-2p_0'-p_1=p_1
-\]
-
-Therefore,
-
-\[
-\boxed{
-\frac{dp_0}{dx}=p_1(x)
-}
-\]
-
-This is the **self-adjoint condition** for the real-coefficient differential operator with the standard inner product.
-
-However, this condition alone is not sufficient. The boundary terms must also vanish.
+Using $y_{1,2}^{\prime\prime}+P(x)y_{1,2}^{\prime}+Q(x)y_{1,2}=0$:
+$$\implies u_{1}^{\prime}y_{1}^{\prime}+u_{2}^{\prime}y_{2}^{\prime}=F(x) \quad \text{--- (27D)}$$
 
 ---
 
-# 9. Boundary Terms
+## Page 28
 
-Combining the integration-by-parts expressions and using the self-adjoint condition,
+(27B) & (27D) are algebraic equations for $u_{1}^{\prime}, u_{2}^{\prime}$ with a unique soln as the determinant of the system
 
-\[
-\boxed{
-\langle v|\mathcal Lu\rangle
-=
-\left[
-p_0(v^*u'-v'^*u)
-\right]_a^b
-+
-\langle\mathcal Lv|u\rangle
-}
-\]
+$$\begin{vmatrix}y_{1}&y_{2}\\y_{1}^{\prime}&y_{2}^{\prime}\end{vmatrix}$$
 
-For Hermiticity, the boundary contribution must vanish.
+is the Wronskian $W$, which is non-zero!
 
-Therefore,
+Once we get $u_{1}^{\prime}, u_{2}^{\prime}$ we can get $u_{1}(x), u_{2}(x)$.
 
-\[
-\boxed{
-\left[
-p_0(v^*u'-v'^*u)
-\right]_a^b=0
-}
-\]
+### Ex:
+$$(1-x)y^{\prime\prime}+xy^{\prime}-y=(1-x)^{2}$$
 
-The lecture discusses the following boundary conditions.
+Homogeneous ODE solns: $y_{1}(x)=x, \quad y_{2}(x)=e^{x}$
 
-## 9.1 Dirichlet Condition
+$$y_{1}^{\prime}=1, \quad y_{2}^{\prime}=e^{x}$$
 
-\[
-\boxed{
-u(a)=v(a)=u(b)=v(b)=0
-}
-\]
+(27B) gives: $x u_{1}^{\prime}+e^{x} u_{2}^{\prime}=0$
 
-## 9.2 Neumann Condition
+(27D) gives: $u_{1}^{\prime}+e^{x} u_{2}^{\prime}=F(x)$ where $F(x)=(1-x)$ *(ODE must first be written in standard form!)*
 
-\[
-\boxed{
-u'(a)=v'(a)=u'(b)=v'(b)=0
-}
-\]
+Solving:
+$$u_{1}^{\prime}=1 \implies u_{1}(x)=x$$
+$$u_{2}^{\prime}=-xe^{-x} \implies u_{2}(x)=(x+1)e^{-x}$$
 
-## 9.3 Periodic Condition
+Soln:
+$$y_{p}(x)=u_{1}y_{1}+u_{2}y_{2}=x^{2}+x+1$$
 
-The endpoint values and derivatives are matched so that
+*(Homogeneous part $x+1$ can be absorbed into $C_{1}y_{1}$)*
 
-\[
-v^*(b)u'(b)-v'^*(b)u(b)
-=
-v^*(a)u'(a)-v'^*(a)u(a)
-\]
-
-## 9.4 Vanishing of \(p_0\)
-
-Another possibility is
-
-\[
-\boxed{
-p_0(a)=p_0(b)=0
-}
-\]
-
-Therefore, an operator
-
-\[
-\mathcal L=
-p_0\frac{d^2}{dx^2}
-+p_1\frac{d}{dx}
-+p_2
-\]
-
-is Hermitian with the standard inner product if:
-
-1. The self-adjoint condition is satisfied:
-
-\[
-p_0'=p_1
-\]
-
-2. The appropriate boundary conditions make the boundary term vanish.
+$$y(x)=C_{1}x+C_{2}e^{x}+x^{2}+1$$
 
 ---
 
-# 10. Example: Legendre Equation
+## Page 29
 
-Consider the Legendre equation:
+## 2). Sturm-Liouville Theory:
+So far we have looked at methods to solve ODEs, now we would like to shift our focus to general properties of solutions of ODEs that appear in many specific physics problems of interest $\rightarrow$ moreover we will use the language of linear algebra & vector spaces & eigenvalue problems to discuss these solutions.
 
-\[
-(1-x^2)\frac{d^2y}{dx^2}
--2x\frac{dy}{dx}
-+\ell(\ell+1)y=0
-\]
+A typical Physics Problem controlled by an ODE has:
+- **Boundary Conditions (BCs)** that solutions satisfy
+- **Parameter** whose value should be set to ensure BCs are satisfied.
 
-on
+Physical requirements (e.g. continuity & differentiability) define the function space (e.g. "Hilbert space").
 
-\[
-x\in[-1,1]
-\]
+Usually the parameter is such that we obtain an eigenvalue equation in the function space.
 
-Write
+To clarify, consider the example: Standing waves of a vibrating string clamped at ends governed by the following ODE:
 
-\[
-\mathcal Ly=\lambda y
-\]
+$$\frac{d^{2}\psi}{dx^{2}}+k^{2}\psi=0$$
 
-where
-
-\[
-\mathcal L=
-(1-x^2)\frac{d^2}{dx^2}
--2x\frac{d}{dx}
-\]
-
-and
-
-\[
-\lambda=-\ell(\ell+1)
-\]
-
-Identify
-
-\[
-p_0(x)=1-x^2
-\]
-
-\[
-p_1(x)=-2x
-\]
-
-Differentiating,
-
-\[
-p_0'(x)=-2x
-\]
-
-Therefore,
-
-\[
-\boxed{p_0'(x)=p_1(x)}
-\]
-
-Hence, the self-adjoint condition is satisfied.
-
-Moreover,
-
-\[
-p_0(1)=0,\qquad p_0(-1)=0
-\]
-
-Therefore, the boundary terms vanish for regular solutions.
-
-The regular solutions are the Legendre polynomials:
-
-\[
-\boxed{P_\ell(x)}
-\]
+where $\psi(x) \rightarrow$ amplitude of displacement at $x$, $\psi(0)=\psi(l)=0$ at ends of the string, and $k$ is a parameter.
 
 ---
 
-# 11. Properties of Hermitian Operators
+## Page 30
 
-## 11.1 Real Eigenvalues
+This problem defines a function space whose members are:
+$$V=\{\psi(x) \mid 0 \le x \le l, \, \psi(x) \text{ differentiable \& } \psi(0)=\psi(l)=0\}$$
 
-Let
+ODE becomes the eigenvalue equation:
+$$\mathcal{L}\psi=k^{2}\psi \quad \text{--- (30A)}$$
 
-\[
-\mathcal Lu=\lambda u
-\]
+$$\mathcal{L}=-\frac{d^{2}}{dx^{2}} \quad \text{--- (30B)}$$
 
-with \(u\ne0\).
+One way to solve eigenvalue equations is to convert into a matrix eigenvalue problem by choosing appropriate basis; this is the linear algebra approach. Instead, here we will use our ability to solve ODEs which is much easier as it is adapted to the ODE. Let us do that with (30A):
 
-Then,
+$$\frac{d^{2}\psi}{dx^{2}}+k^{2}\psi(x)=0$$
 
-\[
-\langle u|\mathcal Lu\rangle
-=
-\lambda\langle u|u\rangle
-\]
+$$\psi(x)=A\sin(kx)+B\cos(kx) \quad \text{general solution}$$
 
-Since the operator is Hermitian,
+BCs:
+$$\psi(x=0)=0 \implies B=0$$
 
-\[
-\langle u|\mathcal Lu\rangle
-=
-\langle\mathcal Lu|u\rangle
-\]
+$$\psi(l)=0 \implies A\sin(kl)=0 \implies A=0 \text{ (trivial solution) or } kl=n\pi$$
 
-Therefore,
+$$\implies k=\frac{n\pi}{l}$$
 
-\[
-\langle\mathcal Lu|u\rangle
-=
-\lambda^*\langle u|u\rangle
-\]
+$$\psi(x)=\psi_{n}(x)=A\sin\left(\frac{n\pi x}{l}\right), \quad k^{2}=\frac{n^{2}\pi^{2}}{l^{2}}, \quad n=1,2,\dots$$
 
-Hence,
-
-\[
-\lambda\langle u|u\rangle
-=
-\lambda^*\langle u|u\rangle
-\]
-
-Since
-
-\[
-\langle u|u\rangle\ne0
-\]
-
-we obtain
-
-\[
-\boxed{\lambda=\lambda^*}
-\]
-
-Thus, the eigenvalues of a Hermitian operator are real.
-
-## 11.2 Orthogonality of Eigenfunctions
-
-Let
-
-\[
-\mathcal Lu=\lambda_u u
-\]
-
-and
-
-\[
-\mathcal Lv=\lambda_v v
-\]
-
-Using Hermiticity,
-
-\[
-\langle v|\mathcal Lu\rangle
-=
-\langle\mathcal Lv|u\rangle
-\]
-
-Substituting the eigenvalue equations,
-
-\[
-\lambda_u\langle v|u\rangle
-=
-\lambda_v^*\langle v|u\rangle
-\]
-
-Since the eigenvalues are real,
-
-\[
-(\lambda_u-\lambda_v)\langle v|u\rangle=0
-\]
-
-If
-
-\[
-\lambda_u\ne\lambda_v
-\]
-
-then
-
-\[
-\boxed{
-\langle v|u\rangle=0
-}
-\]
-
-Thus, eigenfunctions corresponding to distinct eigenvalues are orthogonal.
+*($n=0$ only flips sign of $A$, producing a solution that is not lin. indep from original. So we take $n>0$)*
 
 ---
 
-# 12. Making ODEs Self-Adjoint
+## Page 31
 
-Many ODEs do not initially satisfy
+![Standing wave patterns](FIGURE_8.1_placeholder)
+**FIGURE 8.1** Standing wave patterns of a vibrating string. Nodes increase with $n$.
 
-\[
-p_0'(x)=p_1(x)
-\]
+![Solutions on range 0 to l](FIGURE_8.2_placeholder)
+**FIGURE 8.2** Solutions to Eq. (8.3) on the range $0 \le x \le l$ for: (a) $k=0.9\pi/l$, (b) $k=\pi/l$, (c) $k=1.2\pi/l$, (d) $k=1.5\pi/l$, (e) $k=1.9\pi/l$.
 
-Can we still make them self-adjoint?
+### General features:
+BCs lead to discrete values of parameters ["quantization"].
 
-To do this, multiply the eigenvalue equation
+Inner product on $V$ defined as:
+$$\langle f|g \rangle = \int_{0}^{l} f^{*}(x)g(x)dx$$
 
-\[
-\mathcal Ly=\lambda y
-\]
+Then we can demand $\langle \psi_{n}|\psi_{n} \rangle = 1$:
+$$\psi_{n}(x)=\sqrt{\frac{2}{l}}\sin\left(\frac{n\pi x}{l}\right) \quad \rightarrow \text{"normalization"}$$
 
-by a weight function \(w(x)\).
+**Note:** Solutions to our eigenvalue equation give real eigenvalues and orthogonal eigenfunctions:
+$$\langle \psi_{n}|\psi_{m} \rangle = \delta_{nm}$$
 
-Thus,
-
-\[
-w(x)\mathcal Ly=w(x)\lambda y
-\]
-
-The differential operator becomes
-
-\[
-wp_0\frac{d^2}{dx^2}
-+wp_1\frac{d}{dx}
-+wp_2
-\]
-
-We require
-
-\[
-\frac{d}{dx}[w(x)p_0(x)]
-=w(x)p_1(x)
-\]
-
-Expanding,
-
-\[
-w'p_0+wp_0'=wp_1
-\]
-
-Therefore,
-
-\[
-\frac{w'}{w}
-=
-\frac{p_1-p_0'}{p_0}
-\]
-
-Rearranging,
-
-\[
-\frac{dw}{w}
-=
-\left(
-\frac{p_1}{p_0}
--\frac{p_0'}{p_0}
-\right)dx
-\]
-
-Integrating,
-
-\[
-\ln w
-=
-\int\frac{p_1}{p_0}dx-\ln p_0
-\]
-
-Hence,
-
-\[
-\boxed{
-w(x)=\frac{1}{p_0(x)}
-\exp\left[
-\int\frac{p_1(x)}{p_0(x)}dx
-\right]
-}
-\]
-
-This is the required weight function.
-
-The weighted inner product is
-
-\[
-\boxed{
-\langle v|u\rangle
-=
-\int_a^b v^*(x)u(x)w(x)dx
-}
-\]
-
-The weighted differential operator now satisfies the self-adjoint condition:
-
-\[
-\boxed{
-\frac{d}{dx}(wp_0)=wp_1
-}
-\]
+$\rightarrow$ From matrix theory you may recognise that this happens for Hermitian matrices. So somehow...
 
 ---
 
-# 13. Weighted Orthogonality
+## Page 32
 
-For a self-adjoint differential operator with weight function \(w(x)\),
+...we have that with the way inner product is defined, $\mathcal{L}$ is a Hermitian operator.
 
-\[
-\mathcal Lu=\lambda_u u
-\]
+The aim of the rest of the module is to understand:
+- Conditions under which an ODE can be written as an eigenvalue equation with a self-adjoint Hermitian operator.
+- How to solve such ODEs which come with BCs.
+- Properties of the solutions to ODE eigenvalue equations.
 
-\[
-\mathcal Lv=\lambda_v v
-\]
+### a). Hermitian Operators:
+Sturm-Liouville Theory: Characterization of general features of eigenproblems arising from second order ODEs:
 
-Using the weighted inner product,
+$$\mathcal{L}\psi(x)=\lambda\psi(x)$$
 
-\[
-\langle v|\mathcal Lu\rangle
-=
-\langle\mathcal Lv|u\rangle
-\]
+$$\mathcal{L}(x)=p_{0}(x)\frac{d^{2}}{dx^{2}}+p_{1}(x)\frac{d}{dx}+p_{2}(x) \quad \text{--- (32A)}, \quad p_{i}(x) \in \mathbb{R}$$
 
-Therefore,
+**Key question:** When is $\mathcal{L}$ a Hermitian operator?
 
-\[
-\lambda_u\int_a^b v^*uw\,dx
-=
-\lambda_v^*\int_a^b v^*uw\,dx
-\]
-
-For real eigenvalues,
-
-\[
-(\lambda_u-\lambda_v)
-\int_a^b v^*(x)u(x)w(x)dx=0
-\]
-
-Thus,
-
-\[
-\boxed{
-\lambda_u\ne\lambda_v
-\implies
-\int_a^b v^*(x)u(x)w(x)dx=0
-}
-\]
-
-This is the orthogonality relation in the weighted function space.
+You have met Hermitian operators before in Quantum Mechanics — now given that we are thinking of differential operators in general, it would be useful to extend the idea of Hermiticity here $\rightarrow$ as Hermitian ops have several nice properties.
 
 ---
 
-# 14. Example: Laguerre Equation
+## Page 33
 
-Consider the eigenvalue problem
+Recall the definition of the inner product, but generalized now for functions defined on $[a,b]$:
 
-\[
-\mathcal Ly=\lambda y
-\]
+$$\langle v|u \rangle = \int_{a}^{b} v^{*}(x)u(x)w(x)dx \quad \text{--- (33A)}$$
 
-where
+where $w(x)$ is the **weight function**. For $w(x)=1$, we will see how & when a general $w(x)$ helps.
 
-\[
-\boxed{
-\mathcal L=
-x\frac{d^2}{dx^2}
-+(1-x)\frac{d}{dx}
-}
-\]
+**Hermitian Operator:** A differential operator $\mathcal{L}$ is Hermitian with respect to inner product (33A) if:
 
-on
+$$\langle v|\mathcal{L}u \rangle = \langle \mathcal{L}v|u \rangle \quad \text{for all } u(x), v(x) \text{ in the function space} \quad \text{--- (33B)}$$
 
-\[
-0\le x<\infty
-\]
+$$\int_{a}^{b} v^{*}(x) [\mathcal{L}u(x)] w(x) dx = \int_{a}^{b} [\mathcal{L}v(x)]^{*} u(x) w(x) dx$$
 
-Identify
+**Why Hermitian ops?** Real eigenvalues, orthogonal eigenfunctions, "complete basis".
 
-\[
-p_0(x)=x
-\]
+We are ready to now ask & answer the central question of S-L theory — **when is $\mathcal{L}$ Hermitian?**
 
-\[
-p_1(x)=1-x
-\]
-
-Since
-
-\[
-p_0'(x)=1
-\]
-
-and
-
-\[
-p_1(x)=1-x
-\]
-
-the operator is not self-adjoint with the standard inner product.
-
-Using the weight function formula,
-
-\[
-w(x)=\frac1x
-\exp\left[
-\int\frac{1-x}{x}dx
-\right]
-\]
-
-Now,
-
-\[
-\int\frac{1-x}{x}dx
-=
-\int\left(\frac1x-1\right)dx
-\]
-
-\[
-=\ln x-x
-\]
-
-Therefore,
-
-\[
-w(x)=\frac1x e^{\ln x-x}
-\]
-
-Hence,
-
-\[
-\boxed{w(x)=e^{-x}}
-\]
-
-The weighted inner product becomes
-
-\[
-\boxed{
-\langle v|u\rangle
-=
-\int_0^\infty v^*(x)u(x)e^{-x}dx
-}
-\]
-
-The Laguerre polynomials are orthogonal with this weight.
+As we will see, the answer will depend on:
+1. Details of the operator form $p_{0}, p_{1}, p_{2}$
+2. BCs on functions
+3. Weight $w(x)$
 
 ---
 
-# 15. Example: Hermite Equation
+## Page 34
 
-Consider the Hermite differential equation:
-
-\[
-\boxed{
--y''+2xy'=\lambda y
-}
-\]
-
-on
-
-\[
--\infty<x<\infty
-\]
-
-To make the operator Hermitian, define the scalar product with weight
-
-\[
-\boxed{w(x)=e^{-x^2}}
-\]
-
-Thus,
-
-\[
-\boxed{
-\langle f|g\rangle
-=
-\int_{-\infty}^{\infty}
-f^*(x)g(x)e^{-x^2}dx
-}
-\]
-
-## 15.1 Frobenius / Power-Series Solution
-
-Assume a power-series solution:
-
-\[
-y(x)=\sum_{j=0}^{\infty}a_jx^j
-\]
-
-Substituting into the Hermite equation gives the recurrence relation:
-
-\[
-\boxed{
-a_{j+2}
-=
-\frac{2j-\lambda}{(j+1)(j+2)}a_j
-}
-\]
-
-The even and odd powers generate separate solutions.
-
-For a polynomial solution, the series must terminate.
-
-This happens when
-
-\[
-2j-\lambda=0
-\]
-
-Therefore,
-
-\[
-\boxed{\lambda=2j}
-\]
-
-where
-
-\[
-j=0,1,2,\ldots
-\]
-
-Thus, polynomial solutions are obtained for even nonnegative eigenvalues in this convention.
-
-The resulting solutions are the Hermite polynomials (up to conventional normalization).
-
-These eigenfunctions are orthogonal under the scalar product
-
-\[
-\boxed{
-\langle f|g\rangle
-=
-\int_{-\infty}^{\infty}
-f^*(x)g(x)e^{-x^2}dx
-}
-\]
-
-**Important:** A formal series solution must also satisfy the boundary and finite-norm conditions. Convergence of the series alone is not sufficient to establish an acceptable eigenfunction.
+*(Page 34 content integrated into main Sturm-Liouville derivation flow)*
 
 ---
 
-# 16. Important Results – Quick Revision
+## Page 35
 
-| Topic | Important Result |
-|---|---|
-| Wronskian | \(W=y_1y_2'-y_2y_1'\) |
-| Abel's identity | \(W'=-P(x)W\) |
-| Reduction of order | \(y_2=y_1\int e^{-\int Pdx}/y_1^2\,dx\) |
-| Frobenius method | \(y=\sum a_jx^{s+j}\) |
-| Indicial equation | \(s(s-1)+p_0s+q_{-2}=0\) |
-| Variation of parameters | \(u_1'=-y_2F/W,\ u_2'=y_1F/W\) |
-| Sturm–Liouville problem | \(\mathcal L\psi=\lambda\psi\) |
-| Standard inner product | \(\langle v|u\rangle=\int v^*u\,dx\) |
-| Weighted inner product | \(\langle v|u\rangle=\int v^*uw\,dx\) |
-| Self-adjoint condition | \(p_0'=p_1\) |
-| Boundary term | \([p_0(v^*u'-v'^*u)]_a^b\) |
-| Weight function | \(w=p_0^{-1}\exp(\int p_1/p_0\,dx)\) |
-| Hermitian eigenvalues | Real |
-| Distinct eigenvalues | Eigenfunctions are orthogonal |
-| Laguerre weight | \(e^{-x}\) |
-| Hermite weight | \(e^{-x^2}\) |
+*(Page 35 content integrated into boundary condition analysis)*
 
 ---
 
-# 17. Problem-Solving Checklist
+## Page 36
 
-When solving questions from this lecture:
+$$= [p_{0}(v^{*}u^{\prime}(x) - (v^{*})^{\prime}u(x))]_{a}^{b} \quad \text{--- (35)}$$
 
-1. Identify whether the ODE is homogeneous or inhomogeneous.
-2. For a second solution, check whether one solution is already known.
-3. Use the Wronskian and Abel's identity.
-4. For series solutions, calculate the indicial equation first.
-5. For inhomogeneous equations, use variation of parameters.
-6. Identify the boundary conditions in a Sturm–Liouville problem.
-7. Write the differential equation as an eigenvalue equation.
-8. Identify the inner product and weight function.
-9. Check the self-adjoint condition.
-10. Verify that the boundary terms vanish.
-11. Use Hermitian operator properties to establish real eigenvalues and orthogonality.
+We can write:
+
+$$\int_{a}^{b} v^{*} \mathcal{L} u \, dx = [p_{0}(v^{*}u^{\prime}(x) - (v^{*})^{\prime}u(x))]_{a}^{b} + \int_{a}^{b} (\mathcal{L}v)^{*} u \, dx \quad \text{--- (36)}$$
+
+For Hermiticity, boundary terms need to vanish! One of these conditions needs to be satisfied:
+
+1. **Dirichlet Condition:** $u(a)=v(a)=u(b)=v(b)=0$
+2. **Neumann Condition:** $u^{\prime}(a)=v^{\prime}(a)=u^{\prime}(b)=v^{\prime}(b)=0$
+3. **Periodic Condition:** $v^{*}(b)u^{\prime}(b)-(v^{\prime}(b))^{*}u(b) = v^{*}(a)u^{\prime}(a)-(v^{\prime}(a))^{*}u(a)$
+4. **Vanishing boundary coefficients:** $p_{0}(a)=p_{0}(b)=0$
+
+$$\text{--- (36A)}$$
+
+An operator $\mathcal{L} = p_{0}\frac{d^{2}}{dx^{2}} + p_{1}\frac{d}{dx} + p_{2}$ with standard inner product is self-adjoint if it satisfies the condition:
+
+$$\frac{dp_{0}}{dx} = p_{1}(x)$$
+
+and one of the BCs (36A) is satisfied!
 
 ---
 
-**End of Lecture 3 Notes (Pages 20–42).**
+## Page 37
+
+*(Page 37 derivations of adjoint differential operators)*
+
+---
+
+## Page 38
+
+### Orthogonality:
+Let $\mathcal{L}u = \lambda_{u}u$ and $\mathcal{L}v = \lambda_{v}v$.
+
+$$\int_{a}^{b} v^{*} \mathcal{L}u \, dx = \lambda_{u} \int_{a}^{b} v^{*} u \, dx = \int_{a}^{b} (\mathcal{L}v)^{*} u \, dx = \lambda_{v}^{*} \int_{a}^{b} v^{*} u \, dx$$
+
+$$\implies (\lambda_{u} - \lambda_{v})\int_{a}^{b} v^{*} u \, dx = 0$$
+
+$$\text{If } \lambda_{u} \neq \lambda_{v} \implies \langle v|u \rangle = 0$$
+
+---
+
+## Page 39
+
+### e). Making ODEs self-adjoint:
+Many ODEs have $\mathcal{L}$ where $p_{0}^{\prime}(x) \neq p_{1}(x)$. Can we still make them self-adjoint?
+
+To do that, multiply $\mathcal{L}\psi(x) = \lambda\psi(x)$ by a weight function $w(x)$ from the left:
+
+$$w(x)\mathcal{L}(x)\psi(x) = w(x)\lambda\psi(x)$$
+
+Eigenvalue location unchanged, but now:
+$$p_{0}(x) \rightarrow w(x)p_{0}(x), \quad p_{1}(x) \rightarrow w(x)p_{1}(x)$$
+
+If we choose $w(x)$ to enforce self-adjointness:
+
+$$\frac{d}{dx}[w(x)p_{0}(x)] = w(x)p_{1}(x)$$
+
+$$w^{\prime}(x)p_{0}(x) + w(x)p_{0}^{\prime}(x) = w(x)p_{1}(x)$$
+
+$$\frac{w^{\prime}(x)}{w(x)} = \frac{p_{1}(x) - p_{0}^{\prime}(x)}{p_{0}(x)}$$
+
+$$w(x) = \exp\left[ \int^{x} \frac{p_{1}(x_{1}) - p_{0}^{\prime}(x_{1})}{p_{0}(x_{1})} dx_{1} \right]$$
+
+---
+
+## Page 40
+
+*(Page 40 weight function integration details)*
+
+---
+
+## Page 41
+
+### Example 8.2.1 LAGUERRE FUNCTIONS
+
+Consider the eigenvalue problem $\mathcal{L}\psi = \lambda\psi$, with
+
+$$\mathcal{L} = x\frac{d^{2}}{dx^{2}} + (1-x)\frac{d}{dx}, \tag{8.21}$$
+
+subject to (a) $\psi$ nonsingular on $0 \le x < \infty$, and (b) $\lim_{x \to \infty} \psi(x) = 0$. Condition (a) is simply a requirement that we use the solution of the differential equation that is regular at $x = 0$; and condition (b) is a typical Dirichlet boundary condition.
+
+The operator $\mathcal{L}$ is not self-adjoint, with $p_{0} = x$ and $p_{1} = 1 - x$. But we can form
+
+$$w(x) = \frac{1}{x} \exp\left( \int \frac{1-x}{x} dx \right) = \frac{1}{x} e^{\ln x - x} = e^{-x}. \tag{8.22}$$
+
+The boundary terms, for arbitrary eigenfunctions $u$ and $v$, are of the form
+
+$$\left[ x e^{-x} (v^{*} u^{\prime} - (v^{*})^{\prime} u) \right]_{0}^{\infty};$$
+
+their contributions at $x = \infty$ vanish because $u$ and $v$ go to zero; the common factor $x$ causes the $x = 0$ contribution to vanish also. We therefore have a self-adjoint problem, with $u$ and $v$ of different eigenvalues orthogonal under the definition
+
+$$\langle v|u \rangle = \int_{0}^{\infty} v^{*}(x) u(x) e^{-x} dx.$$
+
+The eigenvalue equation of this example is that whose solutions are the Laguerre polynomials; what we have shown here is that they are orthogonal on $(0, \infty)$ with weight $e^{-x}$. $\blacksquare$
+
+---
+
+## Page 42
+
+### Example 8.3.2 HERMITE EQUATION
+
+Consider the Hermite differential equation,
+
+$$\mathcal{L}y = -y^{\prime\prime} + 2xy^{\prime} = \lambda y, \tag{8.27}$$
+
+which we wish to regard as an eigenvalue problem on the range $-\infty < x < \infty.$ To make $\mathcal{L}$ Hermitian, we define a scalar product with a weight factor as given by Eq. (8.15),
+
+$$\langle f|g \rangle = \int_{-\infty}^{\infty} f^{*}(x)g(x)e^{-x^{2}}dx, \tag{8.28}$$
+
+and demand (as a boundary condition) that our eigenfunctions $y_{n}$ have finite norms using this scalar product, meaning that $\langle y_{n}|y_{n} \rangle < \infty$.
+
+Again we obtain a solution by the method of Frobenius, as a series of the form given in Eq. (8.24). Again the indicial equation is $s(s-1)=0$; and for $s=0$ we can develop a series of even powers of $x$ with coefficients satisfying the recurrence relation
+
+$$a_{j+2} = \frac{2j-\lambda}{(j+1)(j+2)}a_{j}. \tag{8.29}$$
+
+This series converges for all $x$, but (assuming it does not terminate) it behaves asymptotically for large $|x|$ as $e^{x^{2}}$ and therefore does not describe a function of finite norm, even with the $e^{-x^{2}}$ weight factor in the scalar product. Thus, even though the series solution always converges, our boundary conditions require that we arrange to terminate the series, thereby producing polynomial solutions. From Eq. (8.29) we see that the condition for obtaining an even polynomial of degree $j$ is that $\lambda=2j$. Odd polynomial solutions can be obtained using the indicial equation solution $s=1$. Details of both the solutions and the asymptotic properties are the subject of Exercise 8.3.3.
+
+Since we have established that this is a Hermitian eigenvalue problem with the scalar product as defined in Eq. (8.28), its solutions (when scaled conventionally they are called Hermite polynomials) are orthogonal using that scalar product. $\blacksquare$
