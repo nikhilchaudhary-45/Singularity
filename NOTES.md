@@ -249,8 +249,11 @@ Boundary Conditions: $\psi(0) = \psi(l) = 0$[cite: 1].
 
 ## Page 30
 
+
+## Page 30
+
 This problem defines a function space whose members are:
-$$V = \{ \psi(x) \mid 0 \le x \le l, \, \psi(x) \text{ differentiable \& } \psi(0)=\psi(l)=0 \}$$
+$$V = \{ \psi(x) \mid 0 \le x \le l, \, \psi(x) \text{ differentiable and } \psi(0)=\psi(l)=0 \}$$
 
 ODE becomes the eigenvalue equation:
 $$\mathcal{L}\psi = k^{2}\psi \quad \text{--- (30A)}$$
