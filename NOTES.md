@@ -1,105 +1,104 @@
-# Transcription & Notes: Second-Order Linear ODEs, Frobenius Method, & Sturm-Liouville Theory (Pages 20–42)
+# Second-Order Linear ODEs, Frobenius Method, & Sturm-Liouville Theory 
 
-## Page 20
 
-$$= P(x)(y_{1}^{\prime}w_{23} - y_{2}^{\prime}w_{13} + y_{3}^{\prime}w_{12})[cite: 1]$$
+$$= P(x)(y_{1}^{\prime}w_{23} - y_{2}^{\prime}w_{13} + y_{3}^{\prime}w_{12})
 
-$$= P(x)\det\begin{pmatrix} y_{1} & y_{2} & y_{3} \\ y_{1}^{\prime} & y_{2}^{\prime} & y_{3}^{\prime} \\ y_{1}^{\prime} & y_{2}^{\prime} & y_{3}^{\prime} \end{pmatrix} = 0 \quad \text{(2 rows same)}[cite: 1]$$
+$$= P(x)\det\begin{pmatrix} y_{1} & y_{2} & y_{3} \\ y_{1}^{\prime} & y_{2}^{\prime} & y_{3}^{\prime} \\ y_{1}^{\prime} & y_{2}^{\prime} & y_{3}^{\prime} \end{pmatrix} = 0 \quad \text{(2 rows same)}
 
-$$\Rightarrow W = 0[cite: 1]$$
+$$\Rightarrow W = 0
 
-$$\therefore \{y_{1}, y_{2}, y_{3}\} \text{ are linearly dependent.}[cite: 1]$$
+$$\therefore \{y_{1}, y_{2}, y_{3}\} \text{ are linearly dependent.}
 
-**A Linear Second-Order Homogeneous ODE has at most 2 linearly independent solutions.**[cite: 1]
+**A Linear Second-Order Homogeneous ODE has at most 2 linearly independent solutions.**
 
 ### Second Solution:
 Let 
-$$y^{\prime\prime} + P(x)y^{\prime} + Q(x)y = 0 \quad \text{--- (20A)}[cite: 1]$$
+$$y^{\prime\prime} + P(x)y^{\prime} + Q(x)y = 0 \quad \text{--- (20A)}
 
-Let $y_{1}, y_{2}$ be two linearly independent solutions[cite: 1].
+Let $y_{1}, y_{2}$ be two linearly independent solutions
 
-$$W = y_{1}y_{2}^{\prime} - y_{2}y_{1}^{\prime}[cite: 1]$$
+$$W = y_{1}y_{2}^{\prime} - y_{2}y_{1}^{\prime}
 
 From earlier, 
-$$W^{\prime} = -P(x)W \quad \text{--- (20B)}[cite: 1]$$
+$$W^{\prime} = -P(x)W \quad \text{--- (20B)}
 
-**Remark:** If $P(x) = 0 \implies W^{\prime} = 0 \Rightarrow W = y_{1}y_{2}^{\prime} - y_{1}^{\prime}y_{2} = \text{const}$[cite: 1].
+**Remark:** If $P(x) = 0 \implies W^{\prime} = 0 \Rightarrow W = y_{1}y_{2}^{\prime} - y_{1}^{\prime}y_{2} = \text{const}$
 
 ---
 
 ## Page 21
 
-In general from Eq. (20B)[cite: 1]:
+In general from Eq. (20B)
 
-$$\frac{dW}{W} = -P \, dx \implies W(x) = \exp\left[-\int^{x} P(x^{\prime}) dx^{\prime}\right][cite: 1]$$
+$$\frac{dW}{W} = -P \, dx \implies W(x) = \exp\left[-\int^{x} P(x^{\prime}) dx^{\prime}\right]$$
 
-**Note:** If $P(x)$ remains finite in the domain, $W(x) \neq 0$ unless $W(a) = 0$[cite: 1].
+**Note:** If $P(x)$ remains finite in the domain, $W(x) \neq 0$ unless $W(a) = 0$
 
-Wronskian $>0$ or never $0$. But if $P(x)$ is not finite, we have to be careful to ensure $W(x) \neq 0$[cite: 1].
+Wronskian $>0$ or never $0$. But if $P(x)$ is not finite, we have to be careful to ensure $W(x) \neq 0$
 
 Now:
-$$W(x) = y_{1}y_{2}^{\prime} - y_{1}^{\prime}y_{2} = y_{1}^{2}\frac{d}{dx}\left(\frac{y_{2}}{y_{1}}\right) \quad \text{--- (21B)}[cite: 1]$$
+$$W(x) = y_{1}y_{2}^{\prime} - y_{1}^{\prime}y_{2} = y_{1}^{2}\frac{d}{dx}\left(\frac{y_{2}}{y_{1}}\right) \quad \text{--- (21B)}]$$
 
-Combining (21A) & (21B)[cite: 1]:
+Combining (21A) & (21B):
 $$\frac{d}{dx}\left(\frac{y_{2}}{y_{1}}\right) = \frac{W(a)\exp\left[-\int_{a}^{x} P(x_{1}) dx_{1}\right]}{y_{1}^{2}}[cite: 1]$$
 
-Integrating[cite: 1]:
-$$\int_{b}^{x} d\left(\frac{y_{2}}{y_{1}}\right)[cite: 1]$$
+Integrating:
+$$\int_{b}^{x} d\left(\frac{y_{2}}{y_{1}}\right)$$
 
-$$y_{2}(x) = y_{1}(x) W(a) \int_{b}^{x} \frac{\exp\left[-\int_{a}^{x_{2}} P(x_{1}) dx_{1}\right] dx_{2}}{[y_{1}(x_{2})]^{2}} \quad \text{--- (21C)}[cite: 1]$$
+$$y_{2}(x) = y_{1}(x) W(a) \int_{b}^{x} \frac{\exp\left[-\int_{a}^{x_{2}} P(x_{1}) dx_{1}\right] dx_{2}}{[y_{1}(x_{2})]^{2}} \quad \text{--- (21C)}$$
 
-Here $a, b$ are arbitrary constants[cite: 1]. A term $\propto y_{1}(x)$ can be neglected as it is simply a constant multiplying $y_{1}(x)$[cite: 1].
+Here $a, b$ are arbitrary constants. A term $\propto y_{1}(x)$ can be neglected as it is simply a constant multiplying $y_{1}(x)$[cite: 1].
 
-We can always choose $a$ such that $W(a) = 1$[cite: 1].
+We can always choose $a$ such that $W(a) = 1$.
 
 ---
 
-## Page 22
 
-We can also make Eq. (21C) an indefinite integral[cite: 1]. Choice of $a,b$ will only add constants or terms proportional to $y_{1}(x)$[cite: 1]:
 
-$$y_{2}(x) = y_{1}(x) \int^{x} \frac{\exp\left[-\int^{x_{2}} P(x_{1}) dx_{1}\right] dx_{2}}{[y_{1}(x_{2})]^{2}} \quad \text{--- (22A)}[cite: 1]$$
+We can also make Eq. (21C) an indefinite integral[cite: 1]. Choice of $a,b$ will only add constants or terms proportional to $y_{1}(x)$:
 
-If $P(x) = 0$[cite: 1]:
-$$y_{2}(x) = y_{1}(x) \int^{x} \frac{dx_{2}}{[y_{1}(x_{2})]^{2}} \quad \text{--- (22B)}[cite: 1]$$
+$$y_{2}(x) = y_{1}(x) \int^{x} \frac{\exp\left[-\int^{x_{2}} P(x_{1}) dx_{1}\right] dx_{2}}{[y_{1}(x_{2})]^{2}} \quad \text{--- (22A)}$$
+
+If $P(x) = 0$:
+$$y_{2}(x) = y_{1}(x) \int^{x} \frac{dx_{2}}{[y_{1}(x_{2})]^{2}} \quad \text{--- (22B)}$$
 
 ### Example: Simple Harmonic Oscillator (SHO)
-$$\frac{d^{2}y}{dx^{2}} + y = 0[cite: 1]$$
+$$\frac{d^{2}y}{dx^{2}} + y = 0$$
 
-Using Eq. (22B) with $y_{1}(x) = \sin x$[cite: 1]:
+Using Eq. (22B) with $y_{1}(x) = \sin x$:
 
-$$y_{2}(x) = \sin x \int^{x} \frac{dx_{2}}{\sin^{2}x_{2}} = \sin x \int^{x} \csc^{2}x_{2} \, dx_{2} = \sin x (-\cot x) = -\cos x[cite: 1]$$
+$$y_{2}(x) = \sin x \int^{x} \frac{dx_{2}}{\sin^{2}x_{2}} = \sin x \int^{x} \csc^{2}x_{2} \, dx_{2} = \sin x (-\cot x) = -\cos x$$
 
 ### Second Solution of a Series Expansion
-The method of Eq. (22A) can be directly applied when one series solution is available[cite: 1].
+The method of Eq. (22A) can be directly applied when one series solution is available.
 
 ---
 
-## Page 23
 
-Further insight into Fuchs' theorem is obtained if we expand $P(x)$ & $Q(x)$ as a power series as well[cite: 1].
 
-*(Regular singularity at $x=0$, which is the minimum criterion for Frobenius)*[cite: 1]
+Further insight into Fuchs' theorem is obtained if we expand $P(x)$ & $Q(x)$ as a power series as well
 
-First expand $xP(x)$ & $x^{2}Q(x)$ as power series[cite: 1]:
+*(Regular singularity at $x=0$, which is the minimum criterion for Frobenius)*
 
-$$xP(x) = \sum_{i=0}^{\infty} p_{i} x^{i} \implies P(x) = \sum_{i=-1}^{\infty} p_{i} x^{i}[cite: 1]$$
+First expand $xP(x)$ & $x^{2}Q(x)$ as power series:
 
-$$x^{2}Q(x) = \sum_{j=0}^{\infty} q_{j-2} x^{j} \implies Q(x) = \sum_{j=-2}^{\infty} q_{j} x^{j}[cite: 1]$$
+$$xP(x) = \sum_{i=0}^{\infty} p_{i} x^{i} \implies P(x) = \sum_{i=-1}^{\infty} p_{i} x^{i}$$
 
-Develop a few terms of a power series solution for $y_{1}(x)$ & then use Eq. (22A) to get $y_{2}(x)$ by term-by-term integration[cite: 1].
+$$x^{2}Q(x) = \sum_{j=0}^{\infty} q_{j-2} x^{j} \implies Q(x) = \sum_{j=-2}^{\infty} q_{j} x^{j}$$
+
+Develop a few terms of a power series solution for $y_{1}(x)$ & then use Eq. (22A) to get $y_{2}(x)$ by term-by-term integration.
 
 **Step 1:**
-$$y^{\prime\prime} + (p_{-1}x^{-1} + p_{0} + p_{1}x + \dots)y^{\prime} + (q_{-2}x^{-2} + q_{-1}x^{-1} + \dots)y = 0[cite: 1]$$
+$$y^{\prime\prime} + (p_{-1}x^{-1} + p_{0} + p_{1}x + \dots)y^{\prime} + (q_{-2}x^{-2} + q_{-1}x^{-1} + \dots)y = 0$$
 
 **Step 2:**
-Substitute $y(x) = \sum_{\lambda=0}^{\infty} a_{\lambda} x^{s+\lambda}$[cite: 1]:
+Substitute $y(x) = \sum_{\lambda=0}^{\infty} a_{\lambda} x^{s+\lambda}$
 
-$$\sum_{\lambda=0}^{\infty}(s+\lambda)(s+\lambda-1)a_{\lambda}x^{s+\lambda-2} + \sum_{i=-1}^{\infty}p_{i}x^{i}\sum_{\lambda=0}^{\infty}(s+\lambda)a_{\lambda}x^{\lambda+s-1} + \sum_{j=-2}^{\infty}q_{j}x^{j}\sum_{\lambda=0}^{\infty}a_{\lambda}x^{s+\lambda} = 0[cite: 1]$$
+$$\sum_{\lambda=0}^{\infty}(s+\lambda)(s+\lambda-1)a_{\lambda}x^{s+\lambda-2} + \sum_{i=-1}^{\infty}p_{i}x^{i}\sum_{\lambda=0}^{\infty}(s+\lambda)a_{\lambda}x^{\lambda+s-1} + \sum_{j=-2}^{\infty}q_{j}x^{j}\sum_{\lambda=0}^{\infty}a_{\lambda}x^{s+\lambda} = 0$$
 
-The coefficient of lowest power ($\lambda=0$) yields the indicial equation[cite: 1]:
+The coefficient of lowest power ($\lambda=0$) yields the indicial equation:
 
-$$s(s-1) + p_{-1}s + q_{-2} = 0[cite: 1]$$
+$$s(s-1) + p_{-1}s + q_{-2} = 0$$
 
 $$s^{2} + (p_{-1}-1)s + q_{-2} = 0 \quad \text{--- (23B)}[cite: 1]$$
 
@@ -359,4 +358,4 @@ $$\langle f | g \rangle = \int_{-\infty}^{\infty} f^{*}(x)g(x)e^{-x^{2}} \, dx[c
 Recurrence relation for coefficients[cite: 1]:
 $$a_{j+2} = \frac{2j - \lambda}{(j+1)(j+2)} a_{j}[cite: 1]$$
 
-To ensure finite norm $\langle y | y \rangle < \infty$, the series must terminate into a polynomial, which requires quantized eigenvalues $\lambda = 2j$[cite: 1].
+To ensure finite norm $\langle y | y \rangle < \infty$, the series must terminate into a polynomial, which requires quantized eigenvalues $\lambda = 2j$
