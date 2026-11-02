@@ -1,23 +1,31 @@
-# Second-Order Linear ODEs, Frobenius Method, & Sturm-Liouville Theory 
+# Second-Order Linear ODEs, Frobenius Method, & Sturm-Liouville Theory
 
+## Page 20
 
-$$= P(x)(y_{1}^{\prime}w_{23} - y_{2}^{\prime}w_{13} + y_{3}^{\prime}w_{12})
+$$= P(x)(y_{1}^{\prime}w_{23} - y_{2}^{\prime}w_{13} + y_{3}^{\prime}w_{12})$$
 
-$$= P(x)\det\begin{pmatrix} y_{1} & y_{2} & y_{3} \\ y_{1}^{\prime} & y_{2}^{\prime} & y_{3}^{\prime} \\ y_{1}^{\prime} & y_{2}^{\prime} & y_{3}^{\prime} \end{pmatrix} = 0 \quad \text{(2 rows same)}
+$$= P(x)\det\begin{pmatrix} y_{1} & y_{2} & y_{3} \\ y_{1}^{\prime} & y_{2}^{\prime} & y_{3}^{\prime} \\ y_{1}^{\prime} & y_{2}^{\prime} & y_{3}^{\prime} \end{pmatrix} = 0 \quad \text{(2 rows same)}$$
 
-$$\Rightarrow W = 0
+$$\Rightarrow W = 0$$
 
-$$\therefore \{y_{1}, y_{2}, y_{3}\} \text{ are linearly dependent.}
+$$\therefore \{y_{1}, y_{2}, y_{3}\} \text{ are linearly dependent.}$$
 
 **A Linear Second-Order Homogeneous ODE has at most 2 linearly independent solutions.**
 
 ### Second Solution:
 Let 
-$$y^{\prime\prime} + P(x)y^{\prime} + Q(x)y = 0 \quad \text{--- (20A)}
 
-Let $y_{1}, y_{2}$ be two linearly independent solutions
+$$y^{\prime\prime} + P(x)y^{\prime} + Q(x)y = 0 \quad \text{--- (20A)}$$
 
-$$W = y_{1}y_{2}^{\prime} - y_{2}y_{1}^{\prime}
+Let $y_{1}, y_{2}$ be two linearly independent solutions:
+
+$$W = y_{1}y_{2}^{\prime} - y_{2}y_{1}^{\prime}$$
+
+From earlier:
+
+$$W^{\prime} = -P(x)W \quad \text{--- (20B)}$$
+
+**Remark:** If $P(x) = 0 \implies W^{\prime} = 0 \Rightarrow W = y_{1}y_{2}^{\prime} - y_{1}^{\prime}y_{2} = \text{const}$
 
 From earlier, 
 $$W^{\prime} = -P(x)W \quad \text{--- (20B)}
