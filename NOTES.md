@@ -249,23 +249,30 @@ Boundary Conditions: $\psi(0) = \psi(l) = 0$[cite: 1].
 
 ## Page 30
 
-Function space:
-$$V = \{\psi(x) \mid 0 \le x \le l, \, \psi(x) \text{ differentiable \& } \psi(0)=\psi(l)=0\}[cite: 1]$$
+This problem defines a function space whose members are:
+$$V = \{ \psi(x) \mid 0 \le x \le l, \, \psi(x) \text{ differentiable \& } \psi(0)=\psi(l)=0 \}$$
 
-ODE written as an eigenvalue equation:
-$$\mathcal{L}\psi = k^{2}\psi \quad \text{where } \mathcal{L} = -\frac{d^{2}}{dx^{2}} \quad \text{--- (30A, 30B)}[cite: 1]$$
+ODE becomes the eigenvalue equation:
+$$\mathcal{L}\psi = k^{2}\psi \quad \text{--- (30A)}$$
 
-General solution:
-$$\psi(x) = A\sin(kx) + B\cos(kx)[cite: 1]$$
+$$\mathcal{L} = -\frac{d^{2}}{dx^{2}} \quad \text{--- (30B)}$$
 
-Applying BCs:
-$$\psi(0) = 0 \implies B = 0[cite: 1]$$
-$$\psi(l) = 0 \implies A\sin(kl) = 0 \implies kl = n\pi \quad (n = 1, 2, \dots)[cite: 1]$$
+One way to solve eigenvalue equations is to convert into a matrix eigenvalue problem by choosing appropriate basis; this is the linear algebra approach. Instead, here we will use our ability to solve ODEs which is much easier as it is adapted to the ODE. Let us do that with Eq. (30A):
 
-Eigenfunctions and Eigenvalues[cite: 1]:
-$$\psi_{n}(x) = A\sin\left(\frac{n\pi x}{l}\right), \quad k^{2} = \frac{n^{2}\pi^{2}}{l^{2}}[cite: 1]$$
+$$\frac{d^{2}\psi}{dx^{2}} + k^{2}\psi(x) = 0$$
 
----
+$$\psi(x) = A\sin(kx) + B\cos(kx) \quad \text{general solution}$$
+
+Boundary Conditions (BCs):
+$$\psi(x=0) = 0 \implies B = 0$$
+
+$$\psi(l) = 0 \implies A\sin(kl) = 0 \implies A = 0 \text{ (trivial solution) or } kl = n\pi$$
+
+$$\implies k = \frac{n\pi}{l}$$
+
+$$\psi(x) = \psi_{n}(x) = A\sin\left(\frac{n\pi x}{l}\right), \quad k^{2} = \frac{n^{2}\pi^{2}}{l^{2}}, \quad n = 1, 2, \dots$$
+
+*($n=0$ only flips sign of $A$, producing a solution that is not linearly independent from the original. So we take $n > 0$)*
 
 ## Page 31
 
