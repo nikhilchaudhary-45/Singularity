@@ -28,7 +28,7 @@ $$W^{\prime} = -P(x)W \quad \text{--- (20B)}$$
 **Remark:** If $P(x) = 0 \implies W^{\prime} = 0 \Rightarrow W = y_{1}y_{2}^{\prime} - y_{1}^{\prime}y_{2} = \text{const}$
 
 From earlier, 
-$$W^{\prime} = -P(x)W \quad \text{--- (20B)}
+$$W^{\prime} = -P(x)W \quad \text{--- (20B)}$$
 
 **Remark:** If $P(x) = 0 \implies W^{\prime} = 0 \Rightarrow W = y_{1}y_{2}^{\prime} - y_{1}^{\prime}y_{2} = \text{const}$
 
